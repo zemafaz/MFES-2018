@@ -1,2 +1,59 @@
 class Date
+
+instance variables
+	private year : nat1;
+	private month : nat1;
+	private day : nat1;
+
+operations
+	-- Constructor
+	public Date : nat1*nat1*nat1 ==> Date
+		Date(y,m,d) == 
+		(
+			year := y;
+			month := m;
+			day := d;
+			return self
+		)
+		pre y >= 2019 and m >= 1 and m <= 12 and d <= DaysOfMonth(y,m);
+
+	-- Returns the year of the date --
+	public pure getYear : () ==> nat1
+		getYear() == (return year);	
+			
+	-- Returns the month of the date --
+	public pure getMonth : () ==> nat1
+		getMonth() == (return month);	
+			
+	-- Returns the day of the date --
+	pure public getDay : () ==> nat1
+		getDay() == (return day);
+		
+	-- Compares two dates for example date1 and date2
+	-- If the date1 is "bigger" than the date 2, returns true otherwise, false 
+	pure public compareDate : Date ==> bool
+		compareDate(d) == 
+		(
+			if(d.getYear()<year)
+				then return true
+			else if(d.getYear()>year)
+				then return false
+			else if(d.getMonth()<month)
+				then return true
+			else if(d.getMonth()>month)
+				then return false
+			else if (d.getDay()<day)
+				then return true
+			else return false
+		);
+	
+functions
+
+	public static IsLeapYear: nat1 +> bool
+		IsLeapYear(year) == year mod 4 = 0 and year mod 100 <> 0 or year mod 400 = 0;
+
+	public static DaysOfMonth: nat1 * nat1 -> nat1
+		DaysOfMonth(year, month) == (
+			cases month : 1, 3, 5, 7, 8, 10, 12 -> 31, 4, 6, 9, 11 -> 30, 2 -> if IsLeapYear(year) then 29 else 28 end
+	) 
 end Date
