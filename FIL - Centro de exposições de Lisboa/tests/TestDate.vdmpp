@@ -69,7 +69,7 @@ operations
 		 	IO`println("\tDate Tests");
 			testGets();
 			testCompareDate();
-	  	IO`println("Testes terminados com sucesso!");
+	  	IO`println("\tTestes das datas terminados com sucesso!");
 	  	
 	  	--test Pre and Post conditions, leave the function calls commented
 	  	
