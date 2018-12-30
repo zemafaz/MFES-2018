@@ -1,0 +1,81 @@
+class TestDate is subclass of MyTestCase
+
+instance variables
+date1: Date := new Date(2019,1,31);
+date2: Date := new Date(2019,2,28);
+date3: Date := new Date(2020,2,29);
+date4: Date := new Date(2019,4,1);
+date5: Date := new Date(2019,1,1);
+date6: Date := new Date(2019,1,31);
+
+operations
+-- TODO Define operations here
+
+	--Checks if Date Objects are being created correctly and returning the correct values for the year month and day
+	private testGets: () ==> ()
+		testGets() == (
+			assertEqual(2019,date1.getYear());
+			assertEqual(1,date1.getMonth());
+			assertEqual(31,date1.getDay());
+			assertEqual(2019,date2.getYear());
+			assertEqual(2,date2.getMonth());
+			assertEqual(28,date2.getDay());
+			assertEqual(2020,date3.getYear());
+			assertEqual(2,date3.getMonth());
+			assertEqual(29,date3.getDay());
+			assertEqual(2019,date4.getYear());
+			assertEqual(4,date4.getMonth());
+			assertEqual(1,date4.getDay());
+					
+	);
+	
+	--Checks if operation to compare Dates works correctly (datex.compareDate(datey) is true when datex > date y)
+	private testCompareDate: () ==> ()
+		testCompareDate() == (
+			assertTrue(not date1.compareDate(date3));
+			assertTrue(date3.compareDate(date1));
+			assertTrue(date1.compareDate(date5));
+			assertTrue(not date5.compareDate(date1));
+			assertTrue(date4.compareDate(date1));
+			assertTrue(not date1.compareDate(date4));
+			assertTrue(not date1.compareDate(date6));
+			assertTrue(not date6.compareDate(date1));
+		);
+		
+			--Year must be >2018
+	private testPreConditionYearDate: () ==> ()
+		testPreConditionYearDate() == (
+			(dcl wrongYear: Date := new Date(2018,1,1);
+			assertEqual(2018,wrongYear.getYear()));
+		);
+		
+		--Month must be between 1 and 12
+	private testPreConditionMonthDate: () ==> ()
+		testPreConditionMonthDate() == (
+			(dcl wrongMonth: Date := new Date(2019,13,1);
+			assertEqual(13,wrongMonth.getMonth()));
+		);
+		
+	--The day must respect the calender
+	private testPreConditionDayDate: () ==> ()
+		testPreConditionDayDate() == (
+			(dcl wrongDay: Date := new Date(2019,2,29);
+			assertEqual(29,wrongDay.getDay()));
+		);
+	 	
+	public  test: () ==> ()
+	 	test() ==
+	 	(
+		 	IO`println("\tDate Tests");
+			testGets();
+			testCompareDate();
+	  	IO`println("Testes terminados com sucesso!");
+	  	
+	  	--test Pre and Post conditions, leave the function calls commented
+	  	
+	  	--testPreConditionYearDate();
+	  	--testPreConditionMonthDate();
+	  	--testPreConditionDayDate();
+	 	);
+
+end TestDate

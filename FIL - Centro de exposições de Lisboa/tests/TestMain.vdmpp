@@ -1,0 +1,22 @@
+/*
+
+  Class with the main function to run all test classes, simpler but more practical than VDMUnit`TestCase. 
+	To Add a Test: Create a new object of the test class and run tests
+  Rúben Torres & José Azevedo, FEUP, MFES, 2014/15.
+
+*/
+
+class TestMain
+operations
+ public static main: () ==> ()
+ 	main() ==
+ 	(
+	 	IO`println("Inicializar testes...");
+	--to add a test use:  new TestClass.test()
+  	new TestDate().test();
+
+  	IO`println("Testes terminados com sucesso!");
+ 	);
+	
+
+end TestMain
