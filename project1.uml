@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_TYcIkAxGEemIAtogjoY_aQ" name="project1">
+  <eAnnotations xmi:id="_TYcIkQxGEemIAtogjoY_aQ" source="Objing">
+    <contents xmi:type="uml:Property" xmi:id="_TYcIkgxGEemIAtogjoY_aQ" name="exporterVersion">
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_TYcIkwxGEemIAtogjoY_aQ" value="3.0.0"/>
+    </contents>
+  </eAnnotations>
+  <packagedElement xmi:type="uml:Class" xmi:id="_TYcIlAxGEemIAtogjoY_aQ" name="Date"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_TYcIlQxGEemIAtogjoY_aQ" name="Schedule">
+    <ownedAttribute xmi:id="_TYcIlgxGEemIAtogjoY_aQ" name="reserva" visibility="public" type="_TYcIpwxGEemIAtogjoY_aQ" association="_TYcImgxGEemIAtogjoY_aQ"/>
+    <ownedAttribute xmi:id="_TYcIlwxGEemIAtogjoY_aQ" name="initialDate" visibility="public" type="_TYcIlAxGEemIAtogjoY_aQ" association="_TYcInwxGEemIAtogjoY_aQ">
+      <ownedComment xmi:id="_TYcImAxGEemIAtogjoY_aQ">
+        <body>&lt;Enter note text here></body>
+      </ownedComment>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_TYcImQxGEemIAtogjoY_aQ" name="finalDate" visibility="public" type="_TYcIlAxGEemIAtogjoY_aQ" association="_TYcIowxGEemIAtogjoY_aQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_TYcImgxGEemIAtogjoY_aQ" memberEnd="_TYcIlgxGEemIAtogjoY_aQ _TYcImwxGEemIAtogjoY_aQ">
+    <ownedEnd xmi:id="_TYcImwxGEemIAtogjoY_aQ" visibility="public" type="_TYcIlQxGEemIAtogjoY_aQ" association="_TYcImgxGEemIAtogjoY_aQ">
+      <ownedComment xmi:id="_TYcInAxGEemIAtogjoY_aQ">
+        <body></body>
+      </ownedComment>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TYcInQxGEemIAtogjoY_aQ" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TYcIngxGEemIAtogjoY_aQ"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_TYcInwxGEemIAtogjoY_aQ" memberEnd="_TYcIlwxGEemIAtogjoY_aQ _TYcIoAxGEemIAtogjoY_aQ">
+    <ownedEnd xmi:id="_TYcIoAxGEemIAtogjoY_aQ" visibility="public" type="_TYcIlQxGEemIAtogjoY_aQ" association="_TYcInwxGEemIAtogjoY_aQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TYcIoQxGEemIAtogjoY_aQ" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TYcIogxGEemIAtogjoY_aQ"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_TYcIowxGEemIAtogjoY_aQ" memberEnd="_TYcImQxGEemIAtogjoY_aQ _TYcIpAxGEemIAtogjoY_aQ">
+    <ownedEnd xmi:id="_TYcIpAxGEemIAtogjoY_aQ" visibility="public" type="_TYcIlQxGEemIAtogjoY_aQ" association="_TYcIowxGEemIAtogjoY_aQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TYcIpQxGEemIAtogjoY_aQ" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TYcIpgxGEemIAtogjoY_aQ"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_TYcIpwxGEemIAtogjoY_aQ" name="Room">
+    <ownedAttribute xmi:id="_TYcIqAxGEemIAtogjoY_aQ" name="rooms" visibility="public" type="_TYcIxQxGEemIAtogjoY_aQ" association="_TYcIqgxGEemIAtogjoY_aQ">
+      <ownedComment xmi:id="_TYcIqQxGEemIAtogjoY_aQ">
+        <body></body>
+      </ownedComment>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_TYcIqgxGEemIAtogjoY_aQ" memberEnd="_TYcIqAxGEemIAtogjoY_aQ _TYcIqwxGEemIAtogjoY_aQ">
+    <ownedEnd xmi:id="_TYcIqwxGEemIAtogjoY_aQ" visibility="public" type="_TYcIpwxGEemIAtogjoY_aQ" association="_TYcIqgxGEemIAtogjoY_aQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TYcIrAxGEemIAtogjoY_aQ" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TYcIrQxGEemIAtogjoY_aQ"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_TYcIrgxGEemIAtogjoY_aQ" name="Event">
+    <ownedComment xmi:id="_TYcIrwxGEemIAtogjoY_aQ">
+      <body>&lt;Enter note text here></body>
+    </ownedComment>
+    <ownedAttribute xmi:id="_TYcIsAxGEemIAtogjoY_aQ" name="schedule" visibility="public" type="_TYcIlQxGEemIAtogjoY_aQ" aggregation="composite" association="_TYcItgxGEemIAtogjoY_aQ">
+      <ownedComment xmi:id="_TYcIsQxGEemIAtogjoY_aQ">
+        <body>&lt;Enter note text here></body>
+      </ownedComment>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_TYcIsgxGEemIAtogjoY_aQ" name="visitor" visibility="public" type="_TYcIwQxGEemIAtogjoY_aQ" association="_TYcIuAxGEemIAtogjoY_aQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TYcIswxGEemIAtogjoY_aQ" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TYcItAxGEemIAtogjoY_aQ"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_TYcItQxGEemIAtogjoY_aQ" name="exhibitor" visibility="public" type="_TYcIwwxGEemIAtogjoY_aQ" association="_TYcIvAxGEemIAtogjoY_aQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_TYcItgxGEemIAtogjoY_aQ" memberEnd="_TYcIsAxGEemIAtogjoY_aQ _TYcItwxGEemIAtogjoY_aQ">
+    <ownedEnd xmi:id="_TYcItwxGEemIAtogjoY_aQ" visibility="public" type="_TYcIrgxGEemIAtogjoY_aQ" association="_TYcItgxGEemIAtogjoY_aQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_TYcIuAxGEemIAtogjoY_aQ" memberEnd="_TYcIsgxGEemIAtogjoY_aQ _TYcIuQxGEemIAtogjoY_aQ">
+    <ownedEnd xmi:id="_TYcIuQxGEemIAtogjoY_aQ" visibility="public" type="_TYcIrgxGEemIAtogjoY_aQ" association="_TYcIuAxGEemIAtogjoY_aQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TYcIugxGEemIAtogjoY_aQ" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TYcIuwxGEemIAtogjoY_aQ"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_TYcIvAxGEemIAtogjoY_aQ" memberEnd="_TYcItQxGEemIAtogjoY_aQ _TYcIvQxGEemIAtogjoY_aQ">
+    <ownedEnd xmi:id="_TYcIvQxGEemIAtogjoY_aQ" visibility="public" type="_TYcIrgxGEemIAtogjoY_aQ" association="_TYcIvAxGEemIAtogjoY_aQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TYcIvgxGEemIAtogjoY_aQ" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TYcIvwxGEemIAtogjoY_aQ"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_TYcIwAxGEemIAtogjoY_aQ" name="Person" isAbstract="true"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_TYcIwQxGEemIAtogjoY_aQ" name="Visitor">
+    <generalization xmi:id="_TYcIwgxGEemIAtogjoY_aQ" general="_TYcIwAxGEemIAtogjoY_aQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_TYcIwwxGEemIAtogjoY_aQ" name="Exhibitor">
+    <generalization xmi:id="_TYcIxAxGEemIAtogjoY_aQ" general="_TYcIwAxGEemIAtogjoY_aQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_TYcIxQxGEemIAtogjoY_aQ" name="Exhibition Centre">
+    <ownedAttribute xmi:id="_TYcIxgxGEemIAtogjoY_aQ" name="event" visibility="public" type="_TYcIrgxGEemIAtogjoY_aQ" aggregation="composite" association="_TYcIyQxGEemIAtogjoY_aQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TYcIxwxGEemIAtogjoY_aQ" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TYcIyAxGEemIAtogjoY_aQ"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_TYcIyQxGEemIAtogjoY_aQ" memberEnd="_TYcIxgxGEemIAtogjoY_aQ _TYcIygxGEemIAtogjoY_aQ">
+    <ownedEnd xmi:id="_TYcIygxGEemIAtogjoY_aQ" visibility="public" type="_TYcIxQxGEemIAtogjoY_aQ" association="_TYcIyQxGEemIAtogjoY_aQ"/>
+  </packagedElement>
+</uml:Model>

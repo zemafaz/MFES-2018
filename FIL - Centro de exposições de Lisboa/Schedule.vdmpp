@@ -1,0 +1,7 @@
+class Schedule
+instance variables
+  reserva:Room;
+  initialDate:Date;
+  finalDate:Date;
+
+end Schedule

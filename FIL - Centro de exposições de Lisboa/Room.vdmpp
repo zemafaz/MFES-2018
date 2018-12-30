@@ -1,0 +1,5 @@
+class Room
+instance variables
+  rooms:ExhibitionCentre;
+
+end Room

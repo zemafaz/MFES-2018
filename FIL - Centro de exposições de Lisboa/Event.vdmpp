@@ -1,0 +1,7 @@
+class Event
+instance variables
+  schedule:Schedule;
+  visitor:set of (Visitor);
+  exhibitor:Exhibitor;
+
+end Event

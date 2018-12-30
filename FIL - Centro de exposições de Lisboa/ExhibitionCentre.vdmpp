@@ -1,0 +1,5 @@
+class ExhibitionCentre
+instance variables
+  event:set of (Event);
+
+end ExhibitionCentre
