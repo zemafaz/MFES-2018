@@ -1,5 +1,6 @@
 class ExhibitionCentre
 instance variables
   event:set of (Event);
+  rooms: set of (Room);
 
 end ExhibitionCentre
