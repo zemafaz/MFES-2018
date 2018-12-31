@@ -1,4 +1,29 @@
 class Room
 instance variables
+public static nextId : nat1 := 1;
+private id_room : nat1;
+private space: nat1;
+
+operations
+	-- Constructor
+	public Room : nat1 ==> Room
+		Room(s) == 
+		(
+			space := s;
+			id_room := nextId;
+			nextId := nextId + 1;
+			return self
+		)
+		pre nextId >0 and s>0
+		post nextId>id_room;
+		
+	public pure getSpace : () ==> nat1
+		getSpace() == (return space);	
+			
+	public pure getId : () ==> nat1
+		getId() == (return id_room);
+
+	public static roomExists : nat1 ==> bool
+		roomExists(idToCheck) == (return idToCheck<nextId);			
 
 end Room

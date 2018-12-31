@@ -14,6 +14,7 @@ operations
 	 	IO`println("Inicializar testes...");
 	--to add a test use:  new TestClass.test()
   	new TestDate().test();
+  	new TestRoom().test();
 
   	IO`println("Testes terminados com sucesso!");
  	);

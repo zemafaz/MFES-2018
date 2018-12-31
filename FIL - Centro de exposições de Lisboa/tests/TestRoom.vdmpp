@@ -1,0 +1,57 @@
+class TestRoom is subclass of MyTestCase
+
+instance variables
+room1 : Room := new Room(10);
+room2 : Room := new Room(10);
+room3 : Room := new Room(10);
+
+
+operations
+-- TODO Define operations here
+
+	--Checks if Room Objects are being created correctly and returning the correct values
+	private testGets: () ==> ()
+		testGets() == (
+			assertEqual(1,room1.getId());
+			assertEqual(10,room1.getSpace());
+			assertEqual(2,room2.getId());
+			assertEqual(10,room2.getSpace());
+			assertEqual(3,room3.getId());
+			assertEqual(10,room3.getSpace());
+					
+	);
+	
+	--Checks if a room exists
+	private testRoomExists: () ==> ()
+		testRoomExists() == (
+			assertTrue(Room`roomExists(1));
+			assertTrue(Room`roomExists(2));
+			assertTrue(Room`roomExists(3));
+			assertTrue(not Room`roomExists(4));			
+	);
+	
+	private testSpace0: () ==> ()
+		testSpace0() == (
+			(dcl room: Room := new Room(0);	
+				assertEqual(0,room.getSpace()));
+	);
+	
+	private testExists0: () ==> ()
+		testExists0() == (
+			assertTrue(Room`roomExists(1-1));
+	);
+	 	
+	public  test: () ==> ()
+	 	test() ==
+	 	(
+		 	IO`println("\tDate Tests");
+			testGets();
+			testRoomExists();
+	  	IO`println("\tTestes das datas terminados com sucesso!");
+	  	
+	  	--test Pre and Post conditions, leave the function calls commented
+			--testSpace0();
+			--testExists0();
+	 	);
+
+end TestRoom
