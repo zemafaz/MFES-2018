@@ -1,2 +1,16 @@
-class Visitor
+class Visitor is subclass of Entity
+
+	instance variables
+		private static nextId : nat1 := 1;
+		
+	operations
+		public Visitor : seq of char ==> Visitor
+		Visitor(n) == (
+			id := nextId;
+			nextId := nextId + 1;
+			name := n;
+			return self
+		)
+		pre nextId > 0
+		post nextId > id;
 end Visitor

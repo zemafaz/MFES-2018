@@ -1,0 +1,22 @@
+class Entity
+	instance variables
+		protected id: nat1;
+		protected name: seq of char;
+		
+	operations
+		--Constructor
+		public Entity : nat1 * seq of char ==> Entity
+		Entity(i, n) == (
+			id := i;
+			name := n;
+			return self
+		)
+		pre i>0;
+		
+		public pure getId : () ==> nat1
+		getId() == (return id);
+		
+		public pure getName : () ==> seq of char
+		getName() == (return name);
+		
+end Entity
