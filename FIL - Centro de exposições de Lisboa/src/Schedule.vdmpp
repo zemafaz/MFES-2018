@@ -3,7 +3,7 @@ instance variables
   room:Room;
   initialDate:Date;
   finalDate:Date;
-	inv finalDate.compareDate(initialDate) or ((finalDate.compareDate(initialDate) or initialDate.compareDate(finalDate)) = false);  
+	inv finalDate.compareDate(initialDate) or ((finalDate.compareDate(initialDate) or initialDate.compareDate(finalDate)) = false); 
 	-- The final date needs to be bigger or equal to the initial date
 
 operations
@@ -21,6 +21,9 @@ operations
 			
 		public pure getIdRoom : () ==> nat1
 			getIdRoom() == (return room.getId());
+			
+		public pure getPricePerDay : () ==> nat1
+			getPricePerDay()== (return room.getPricePerDay());
 		
 		public pure overlaps : Date * Date * nat1 ==> bool
 			overlaps(iDate, fDate, idRoom) == (
