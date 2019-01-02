@@ -3,18 +3,20 @@ instance variables
 public static nextId : nat1 := 1;
 private id_room : nat1;
 private space: nat1;
+private pricePerDay: nat1;
 
 operations
 	-- Constructor
-	public Room : nat1 ==> Room
-		Room(s) == 
+	public Room : nat1 * nat1 ==> Room
+		Room(s,ppd) == 
 		(
 			space := s;
+			pricePerDay := ppd;
 			id_room := nextId;
 			nextId := nextId + 1;
+			
 			return self
 		)
-		pre nextId >0 and s>0
 		post nextId>id_room;
 		
 	public pure getSpace : () ==> nat1
@@ -22,6 +24,9 @@ operations
 			
 	public pure getId : () ==> nat1
 		getId() == (return id_room);
+		
+	public pure getPricePerDay : () ==> nat1
+		getPricePerDay() == (return pricePerDay);
 
 	public static roomExists : nat1 ==> bool
 		roomExists(idToCheck) == (return idToCheck<nextId);			
