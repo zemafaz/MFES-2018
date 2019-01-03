@@ -1,0 +1,37 @@
+class TestEntity is subclass of MyTestCase
+
+instance variables
+visitor1 : Visitor := new Visitor("João");
+visitor2 : Visitor := new Visitor("José");
+visitor3 : Visitor := new Visitor("Maria");
+exhibitor1 : Exhibitor := new Exhibitor("Paulo");
+exhibitor2 : Exhibitor := new Exhibitor("Ana");
+exhibitor3 : Exhibitor := new Exhibitor("Sofia");
+
+operations
+	
+	
+	private testGets: () ==> ()
+		testGets() == (
+			assertEqual(1,visitor1.getId());
+			assertEqual(2,visitor2.getId());
+			assertEqual(3,visitor3.getId());
+			assertEqual(1,exhibitor1.getId());
+			assertEqual(2,exhibitor2.getId());
+			assertEqual(3,exhibitor3.getId());
+			assertEqual("João",visitor1.getName());
+			assertEqual("José",visitor2.getName());
+			assertEqual("Maria",visitor3.getName());
+			assertEqual("Paulo",exhibitor1.getName());
+			assertEqual("Ana",exhibitor2.getName());
+			assertEqual("Sofia",exhibitor3.getName());
+		);
+		
+	public test: () ==> ()
+		test() == (
+			IO`println("\tEntity Tests");
+			testGets();
+			IO`println("\tTestes das entidades terminados com sucesso!");
+		);
+
+end TestEntity

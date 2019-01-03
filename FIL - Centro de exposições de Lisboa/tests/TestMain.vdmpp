@@ -15,6 +15,7 @@ operations
 	--to add a test use:  new TestClass.test()
   	new TestDate().test();
   	new TestRoom().test();
+  	new TestEntity().test();
 
   	IO`println("Testes terminados com sucesso!");
  	);
