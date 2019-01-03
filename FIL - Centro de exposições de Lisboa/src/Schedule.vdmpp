@@ -34,5 +34,6 @@ operations
 				else if initialDate.compareDate(fDate)
 					then return false
 				else return true
-			);	
+			)
+			pre fDate.compareDate(iDate) or ((fDate.compareDate(iDate) or iDate.compareDate(fDate)) = false);  	
 end Schedule

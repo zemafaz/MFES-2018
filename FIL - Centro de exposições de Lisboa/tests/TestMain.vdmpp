@@ -16,7 +16,7 @@ operations
   	new TestDate().test();
   	new TestRoom().test();
   	new TestEntity().test();
-
+		new TestSchedule().test();
   	IO`println("Testes terminados com sucesso!");
  	);
 	
