@@ -1,6 +1,29 @@
 class ExhibitionCentre
 instance variables
-  event:set of (Event);
-  rooms: set of (Room);
+  private events: set of (Event);
+  private rooms: set of (Room);
+  private visitors: set of (Visitor);
+  private exhibitors: set of (Exhibitor);
+  
+  operations
+  	public ExhibitionCentre : () ==> ExhibitionCentre
+  		ExhibitionCentre() == (
+  			events := {};
+  			rooms := {};
+  			visitors := {};
+  			exhibitors := {};
+  			return self;
+  		);
+  	public registerVisitor: seq of char ==> bool
+  		registerVisitor(v) == (
+  			visitors := visitors union {new Visitor(v)};
+  			return true;
+  		);
+  	public registerExhibitor : seq of char ==> bool
+  		registerExhibitor(e) == (
+  			exhibitors := exhibitors union {new Exhibitor(e)};
+  			return true;
+  		);
+  	
 
 end ExhibitionCentre
