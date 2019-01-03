@@ -1,5 +1,6 @@
 class ExhibitionCentre
 instance variables
+	private static centre : ExhibitionCentre := new ExhibitionCentre();
   private events: set of (Event);
   private rooms: set of (Room);
   private visitors: set of (Visitor);
@@ -7,13 +8,18 @@ instance variables
   
   operations
   	--Constructor
-  	public ExhibitionCentre : () ==> ExhibitionCentre
+  	private ExhibitionCentre : () ==> ExhibitionCentre
   		ExhibitionCentre() == (
   			events := {};
   			rooms := {};
   			visitors := {};
   			exhibitors := {};
   			return self;
+  		);
+  	
+  	public getInstance : () ==> ExhibitionCentre
+  		getInstance() == (
+  			return centre;
   		);
   		
   	--Getters
