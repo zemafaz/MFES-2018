@@ -1,7 +1,27 @@
 class Event
 instance variables
-  schedule:Schedule;
-  visitor:set of (Visitor);
+  schedule : Schedule;
+  participants : set of (Visitor);
+  inv card participants >= schedule.getRoomSpace();
   exhibitor:Exhibitor;
+	pricePerParticipant : nat1;
+	closed : bool;
 
+operations
+	public Event : Schedule * Exhibitor * nat1 ==> Event
+		Event (sch, exhi, price) == (
+		schedule:=sch;
+		exhibitor:=exhi;
+		pricePerParticipant:=price;
+		closed := false;
+		participants := {};
+		);
+		
+	public closeEvent : () ==> ()
+		closeEvent() ==(
+			closed:=true;
+		);
+	--pre data atual 
+		
+		
 end Event

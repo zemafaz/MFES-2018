@@ -66,14 +66,14 @@ functions
 	pre year>=2019;
 
 	-- returns the number days of a given month  
-	private daysOfMonth: nat1 * nat1 -> nat1
+	private daysOfMonth: nat1 * nat1 +> nat1
 		daysOfMonth(year, month) == (
 			cases month : 1, 3, 5, 7, 8, 10, 12 -> 31, 4, 6, 9, 11 -> 30, 2 -> if isLeapYear(year) then 29 else 28 end
 	)
 	pre year>=2019 and month >= 1 and month <= 12;
 
 	--Counts the number of days between 2 dates, the first date also counts so that 2 equals dates returns 1; 
-	public daysElapsed: Date * Date -> nat1
+	public daysElapsed: Date * Date +> nat1
 	daysElapsed(date1, date2) == (
 		date2.gdate_algorithm()-date1.gdate_algorithm()+1
 	)
