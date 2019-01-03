@@ -15,7 +15,7 @@ operations
 			day := d;
 			return self
 		)
-		pre y >= 2019 and m >= 1 and m <= 12 and d <= DaysOfMonth(y,m);
+		pre y >= 2019 and m >= 1 and m <= 12 and d <= daysOfMonth(y,m);
 
 	-- Returns the year of the date --
 	public pure getYear : () ==> nat1
@@ -46,14 +46,30 @@ operations
 				then return true
 			else return false
 		);
+		
+		public pure gdate_algorithm: () ==>nat1
+		gdate_algorithm() == (
+		(dcl m: nat := (month + 9) mod 12,
+			y: nat := year - floor(m/10);
+			
+			return 365*y + floor(y/4) - floor(y/100) + floor(y/400) + floor((m*306 + 5)/10) + ( day - 1 ))
+		)
 	
 functions
 
-	private IsLeapYear: nat1 +> bool
-		IsLeapYear(year) == year mod 4 = 0 and year mod 100 <> 0 or year mod 400 = 0;
+	private isLeapYear: nat1 +> bool
+		isLeapYear(year) == year mod 4 = 0 and year mod 100 <> 0 or year mod 400 = 0;
 
-	private DaysOfMonth: nat1 * nat1 -> nat1
-		DaysOfMonth(year, month) == (
-			cases month : 1, 3, 5, 7, 8, 10, 12 -> 31, 4, 6, 9, 11 -> 30, 2 -> if IsLeapYear(year) then 29 else 28 end
-	) 
+	private daysOfMonth: nat1 * nat1 -> nat1
+		daysOfMonth(year, month) == (
+			cases month : 1, 3, 5, 7, 8, 10, 12 -> 31, 4, 6, 9, 11 -> 30, 2 -> if isLeapYear(year) then 29 else 28 end
+	);
+
+	public daysElapsed: Date * Date -> nat1
+	daysElapsed(date1, date2) == (
+		date2.gdate_algorithm()-date1.gdate_algorithm()+1
+	)
+	pre date2.compareDate(date1) or ((date2.compareDate(date1) or date1.compareDate(date2)) = false);  
+	
 end Date
+

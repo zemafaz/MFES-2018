@@ -7,6 +7,8 @@ date3: Date := new Date(2020,2,29);
 date4: Date := new Date(2019,4,1);
 date5: Date := new Date(2019,1,1);
 date6: Date := new Date(2019,1,31);
+date7: Date:= new Date(2019,3,1);
+date8: Date:= new Date(2020,3,1);
 
 operations
 -- TODO Define operations here
@@ -42,6 +44,32 @@ operations
 			assertTrue(not date6.compareDate(date1));
 		);
 		
+	private testGDate: () ==> ()
+		testGDate() == (
+			assertEqual(737395,date1.gdate_algorithm());
+			assertEqual(737423,date2.gdate_algorithm());
+			assertEqual(737789,date3.gdate_algorithm());
+			assertEqual(737455,date4.gdate_algorithm());
+			assertEqual(737365,date5.gdate_algorithm());
+			assertEqual(737395,date6.gdate_algorithm());
+			assertEqual(737424,date7.gdate_algorithm());
+			assertEqual(737790,date8.gdate_algorithm());
+		);
+		
+		private testDaysElapsed: () ==> ()
+		testDaysElapsed() == (
+			assertEqual(29,Date`daysElapsed(date1,date2));
+			assertEqual(1,Date`daysElapsed(date1,date6));
+			assertEqual(31,Date`daysElapsed(date5,date1));
+			assertEqual(367,Date`daysElapsed(date2,date3));
+			assertEqual(91,Date`daysElapsed(date5,date4));
+			assertEqual(33,Date`daysElapsed(date2,date4));
+			assertEqual(2,Date`daysElapsed(date2,date7));
+			assertEqual(2,Date`daysElapsed(date3,date8));
+
+		);
+
+		
 			--Year must be >2018
 	private testPreConditionYearDate: () ==> ()
 		testPreConditionYearDate() == (
@@ -69,6 +97,8 @@ operations
 		 	IO`println("\tDate Tests");
 			testGets();
 			testCompareDate();
+			testDaysElapsed();
+			testGDate(); 
 	  	IO`println("\tTestes das datas terminados com sucesso!");
 	  	
 	  	--test Pre and Post conditions, leave the function calls commented
