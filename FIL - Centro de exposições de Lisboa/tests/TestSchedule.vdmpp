@@ -21,12 +21,20 @@ operations
 					assertEqual(10,schedule1.getRoomSpace());
 					assertEqual(room1.getId(),schedule1.getIdRoom());
 					assertEqual(100,schedule1.getPricePerDay());
+					assertEqual(date2,schedule1.getFinalDate());
+					assertEqual(1,schedule1.getNumberOfDays());
+					
 					assertEqual(10,schedule2.getRoomSpace());
 					assertEqual(room2.getId(),schedule2.getIdRoom());
 					assertEqual(100,schedule2.getPricePerDay());
+					assertEqual(date1,schedule2.getFinalDate());
+					assertEqual(1,schedule1.getNumberOfDays());
+					
 					assertEqual(10,schedule3.getRoomSpace());
 					assertEqual(room3.getId(),schedule3.getIdRoom());
 					assertEqual(100,schedule3.getPricePerDay());
+					assertEqual(date3,schedule3.getFinalDate());
+					assertEqual(1,schedule3.getNumberOfDays());
 	);
 	
 	private testOverlaps: () ==> ()
