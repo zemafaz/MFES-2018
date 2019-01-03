@@ -6,6 +6,7 @@ instance variables
   private exhibitors: set of (Exhibitor);
   
   operations
+  	--Constructor
   	public ExhibitionCentre : () ==> ExhibitionCentre
   		ExhibitionCentre() == (
   			events := {};
@@ -14,6 +15,26 @@ instance variables
   			exhibitors := {};
   			return self;
   		);
+  		
+  	--Getters
+  	public getVisitors : () ==> set of (Visitor)
+  		getVisitors() == (
+  			return visitors;
+  		);
+  	public getExhibitors : () ==> set of (Exhibitor)
+  		getExhibitors() == (
+  			return exhibitors;
+  		);
+  	public getEvents : () ==> set of (Event)
+  		getEvents() == (
+  			return events;
+  		);
+  	public getRooms : () ==> set of (Room)
+  		getRooms() == (
+  			return rooms;
+  		);
+  		
+  	--Registers
   	public registerVisitor: seq of char ==> bool
   		registerVisitor(v) == (
   			visitors := visitors union {new Visitor(v)};
@@ -24,6 +45,5 @@ instance variables
   			exhibitors := exhibitors union {new Exhibitor(e)};
   			return true;
   		);
-  	
-
+  		
 end ExhibitionCentre
