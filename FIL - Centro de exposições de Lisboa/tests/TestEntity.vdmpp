@@ -1,12 +1,12 @@
 class TestEntity is subclass of MyTestCase
 
 instance variables
-visitor1 : Visitor := new Visitor("João");
-visitor2 : Visitor := new Visitor("José");
-visitor3 : Visitor := new Visitor("Maria");
-exhibitor1 : Exhibitor := new Exhibitor("Paulo");
-exhibitor2 : Exhibitor := new Exhibitor("Ana");
-exhibitor3 : Exhibitor := new Exhibitor("Sofia");
+	visitor1 : Visitor := new Visitor("João");
+	visitor2 : Visitor := new Visitor("José");
+	visitor3 : Visitor := new Visitor("Maria");
+	exhibitor1 : Exhibitor := new Exhibitor("Paulo");
+	exhibitor2 : Exhibitor := new Exhibitor("Ana");
+	exhibitor3 : Exhibitor := new Exhibitor("Sofia");
 
 operations
 	

@@ -35,15 +35,13 @@ instance variables
   		);
   		
   	--Registers
-  	public registerVisitor: seq of char ==> bool
+  	public registerVisitor: seq of char ==> ()
   		registerVisitor(v) == (
   			visitors := visitors union {new Visitor(v)};
-  			return true;
   		);
-  	public registerExhibitor : seq of char ==> bool
+  	public registerExhibitor : seq of char ==> ()
   		registerExhibitor(e) == (
   			exhibitors := exhibitors union {new Exhibitor(e)};
-  			return true;
   		);
   		
 end ExhibitionCentre

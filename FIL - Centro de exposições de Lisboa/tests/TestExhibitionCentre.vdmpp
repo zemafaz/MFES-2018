@@ -1,0 +1,22 @@
+class TestExhibitionCentre is subclass of MyTestCase
+	instance variables
+		centre : ExhibitionCentre := new ExhibitionCentre();
+		
+	operations
+		private testEntities: () ==> ()
+			testEntities() == (
+				
+				return;
+			);
+			
+		public test: () ==> ()
+		test() == (
+			IO`println("\tExhibition Centre Tests");
+			testEntities();
+			IO`println("\tTestes do Centro de Exposições terminados com sucesso!");
+			
+			--test Pre and Post conditions, leave the function calls commented
+			--testNameTooBig();
+
+		);
+end TestExhibitionCentre
