@@ -16,7 +16,6 @@ class TestExhibitionCentre is subclass of MyTestCase
 			IO`println("\tTestes do Centro de Exposições terminados com sucesso!");
 			
 			--test Pre and Post conditions, leave the function calls commented
-			--testNameTooBig();
 
 		);
 end TestExhibitionCentre

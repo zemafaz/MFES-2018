@@ -27,10 +27,12 @@ operations
 		--returns the price per day of the reserved room	
 		public pure getPricePerDay : () ==> nat1
 			getPricePerDay()== (return room.getPricePerDay());
-			
+		
+		--returns the final date	
 		public pure getFinalDate : () ==> Date
 			getFinalDate()== (return finalDate);
-			
+		
+		--returns the number of days beetween the initial date and the final date
 		public pure getNumberOfDays : () ==>nat1
 			getNumberOfDays() == (return Date`daysElapsed(initialDate,finalDate));
 		
