@@ -45,6 +45,17 @@ operations
 			assertTrue(not schedule3.overlaps(date4,date4,room3.getId()));
 
 	);
+	
+	private testFinalDateIsSmaller: () ==> ()
+		testFinalDateIsSmaller() == (
+			(dcl finalDateIsSmaller : Schedule :=new Schedule(room3,date4,date3);
+			assertEqual(100,finalDateIsSmaller.getPricePerDay()));
+		);
+		
+	private testFinalDateIsSmallerOverlaps: () ==> ()
+		testFinalDateIsSmallerOverlaps() == (
+			assertTrue(schedule1.overlaps(date4,date3,room1.getId()));
+	);
 	 	
 	public  test: () ==> ()
 	 	test() ==
@@ -55,7 +66,8 @@ operations
 	  	IO`println("\tTestes das reservas terminados com sucesso!");
 	  	
 	  	--test Pre and Post conditions, leave the function calls commented
-
+			--testFinalDateIsSmaller()
+			--testFinalDateIsSmallerOverlaps();
 	 	);
 
 end TestSchedule

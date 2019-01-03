@@ -19,15 +19,19 @@ operations
 		)
 		post nextId>id_room;
 		
+	--returns the number of people that a room is allowed to have present at the same time	
 	public pure getSpace : () ==> nat1
 		getSpace() == (return space);	
-			
+	
+	--returns the id of the room		
 	public pure getId : () ==> nat1
 		getId() == (return id_room);
-		
+	
+	--returns the price of a room reservation per day	
 	public pure getPricePerDay : () ==> nat1
 		getPricePerDay() == (return pricePerDay);
 
+	--returns true if a room Exists, false otherwise
 	public static roomExists : nat1 ==> bool
 		roomExists(idToCheck) == (return idToCheck<nextId);			
 

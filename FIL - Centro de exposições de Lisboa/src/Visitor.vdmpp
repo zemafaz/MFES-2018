@@ -4,6 +4,7 @@ class Visitor is subclass of Entity
 		private static nextId : nat1 := 1;
 		
 	operations
+	--Constructor
 		public Visitor : seq of char ==> Visitor
 		Visitor(n) == 
 		(

@@ -27,11 +27,21 @@ operations
 			assertEqual("Sofia",exhibitor3.getName());
 		);
 		
+	private testNameTooBig: () ==> ()
+		testNameTooBig() == (
+		(dcl NameTooBig : Exhibitor :=new Exhibitor("O meu nome tem mais de cinquenta caracteres por isso dá erro");
+			assertEqual("O meu nome tem mais de cinquenta caracteres por isso dá erro",NameTooBig.getName()););
+		);
+		
 	public test: () ==> ()
 		test() == (
 			IO`println("\tEntity Tests");
 			testGets();
 			IO`println("\tTestes das entidades terminados com sucesso!");
+			
+			--test Pre and Post conditions, leave the function calls commented
+			--testNameTooBig();
+
 		);
 
 end TestEntity

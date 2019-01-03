@@ -14,5 +14,4 @@ class Exhibitor is subclass of Entity
 			)
 			post nextId>id;
 		
-
 end Exhibitor

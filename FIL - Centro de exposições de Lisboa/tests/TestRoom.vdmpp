@@ -47,10 +47,10 @@ operations
 	public  test: () ==> ()
 	 	test() ==
 	 	(
-		 	IO`println("\tDate Tests");
+		 	IO`println("\tRoom Tests");
 			testGets();
 			testRoomExists();
-	  	IO`println("\tTestes das datas terminados com sucesso!");
+	  	IO`println("\tTestes das salas terminados com sucesso!");
 	  	
 	  	--test Pre and Post conditions, leave the function calls commented
 			--testSpace0();
