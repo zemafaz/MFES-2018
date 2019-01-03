@@ -21,7 +21,7 @@ operations
 		closeEvent(currentDate) ==(
 			closed:=true;
 		)
-	pre not currentDate.compareDate(schedule.getFinalDate());
+	pre currentDate.compareDate(schedule.getFinalDate());
 	
 	public forceCloseEvent : (seq of char) ==> ()
 		forceCloseEvent(password) ==(
