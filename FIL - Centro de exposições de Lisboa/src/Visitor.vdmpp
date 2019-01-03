@@ -5,12 +5,12 @@ class Visitor is subclass of Entity
 		
 	operations
 		public Visitor : seq of char ==> Visitor
-		Visitor(n) == (
+		Visitor(n) == 
+		(
 			id := nextId;
 			nextId := nextId + 1;
 			name := n;
-			return self
+			return self;
 		)
-		pre nextId > 0
 		post nextId > id;
 end Visitor
