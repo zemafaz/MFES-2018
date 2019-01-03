@@ -49,7 +49,7 @@ operations
 		);
 		
 		--converts the gregorian date from yy/mm/dd to days
-	public pure gdate_algorithm: () ==>nat1
+	pure public gdate_algorithm: () ==>nat1
 		gdate_algorithm() == (
 		(dcl m: nat := (month + 9) mod 12,
 			y: nat := year - floor(m/10);

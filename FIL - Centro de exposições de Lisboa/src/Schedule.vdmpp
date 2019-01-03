@@ -27,6 +27,12 @@ operations
 		--returns the price per day of the reserved room	
 		public pure getPricePerDay : () ==> nat1
 			getPricePerDay()== (return room.getPricePerDay());
+			
+		public pure getFinalDate : () ==> Date
+			getFinalDate()== (return finalDate);
+			
+		public pure getNumberOfDays : () ==>nat1
+			getNumberOfDays() == (return Date`daysElapsed(initialDate,finalDate));
 		
 		-- checks if 2 given dates overlap this schedule/reservation
 		public pure overlaps : Date * Date * nat1 ==> bool

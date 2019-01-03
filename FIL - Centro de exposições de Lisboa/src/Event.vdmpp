@@ -2,7 +2,7 @@ class Event
 instance variables
   schedule : Schedule;
   participants : set of (Visitor);
-  inv card participants >= schedule.getRoomSpace();
+  inv card participants <= schedule.getRoomSpace();
   exhibitor:Exhibitor;
 	pricePerParticipant : nat1;
 	closed : bool;
@@ -17,11 +17,66 @@ operations
 		participants := {};
 		);
 		
-	public closeEvent : () ==> ()
-		closeEvent() ==(
+	public closeEvent : Date ==> ()
+		closeEvent(currentDate) ==(
 			closed:=true;
+		)
+	pre not currentDate.compareDate(schedule.getFinalDate());
+	
+	public forceCloseEvent : (seq of char) ==> ()
+		forceCloseEvent(password) ==(
+			closed:=true;
+		)
+	pre password = "password";
+	
+	public pure getPricePerParticipant : () ==> nat1
+		getPricePerParticipant() == (return pricePerParticipant);
+	
+	public pure isClosed : () ==> bool
+		isClosed() == (return closed);
+	
+	public pure getCostOfEvent: () ==> nat1
+	getCostOfEvent() ==(
+			return schedule.getPricePerDay()*schedule.getNumberOfDays();
 		);
-	--pre data atual 
+	
+	public pure getSalesValueOfEvent: () ==> nat
+		getSalesValueOfEvent() ==(
+			return (card participants)*pricePerParticipant;
+		);
+	
+	public pure profit : () ==> int
+		profit () == (
+			return getCostOfEvent()-getSalesValueOfEvent();
+		);
 		
+	public pure getExhibitor : () ==> Exhibitor
+		getExhibitor() == (return exhibitor);
 		
+	public addParticipant : Visitor ==> ()
+		addParticipant(participant) == (
+			participants := participants union {participant};
+		)
+	pre participant not in set participants
+	post participant in set participants and
+		(not exists p1, p2 in set participants & p1 <> p2 and p1.getId() = p2.getId());
+		
+	public removeParticipant: Visitor ==> ()
+		removeParticipant(participant)==
+		(
+			participants := participants \ {participant};
+		)
+	pre participant  in set participants
+	post participant not in set participants;
+	
+	public pure has_participant :  Visitor ==> bool
+		has_participant(participant) == (
+			return participant in set participants;
+		);
+
+	pure public overlaps : Date * Date * nat1 ==> bool
+		overlaps(iDate, fDate, idRoom) == (
+			return schedule.overlaps(iDate, fDate, idRoom);
+		);
+	
 end Event
