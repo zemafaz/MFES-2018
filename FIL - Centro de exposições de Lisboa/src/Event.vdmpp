@@ -1,4 +1,7 @@
 class Event
+
+values
+forceClosePassWord: seq of char = "password";
 instance variables
   schedule : Schedule;
   participants : set of (Visitor);
@@ -31,7 +34,7 @@ operations
 		forceCloseEvent(password) ==(
 			closed:=true;
 		)
-	pre password = "password"
+	pre forceClosePassWord = password
 	post closed;
 	
 	public pure getPricePerParticipant : () ==> nat1
@@ -65,7 +68,7 @@ operations
 		addParticipant(participant) == (
 			participants := participants union {participant};
 		)
-	pre participant not in set participants
+	pre participant not in set participants and not closed
 	post participant in set participants and
 		(not exists p1, p2 in set participants & p1 <> p2 and p1.getId() = p2.getId());
 		
@@ -74,7 +77,7 @@ operations
 		(
 			participants := participants \ {participant};
 		)
-	pre participant  in set participants
+	pre participant  in set participants and not closed
 	post participant not in set participants;
 	
 	public pure has_participant :  Visitor ==> bool

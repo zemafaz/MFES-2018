@@ -3,7 +3,7 @@ class TestEvent is subclass of MyTestCase
 instance variables
 room1 : Room := new Room(10,100);
 room2 : Room := new Room(10,100);
-room3 : Room := new Room(10,100);
+room3 : Room := new Room(6,100);
 date1 : Date := new Date(2019,1,1);
 date2 : Date := new Date(2019,1,4);
 date3 : Date := new Date(2019,1,2);
@@ -20,6 +20,7 @@ exhibitor3 : Exhibitor := new Exhibitor("Sofia");
 visitor4 : Visitor := new Visitor("João");
 visitor5 : Visitor := new Visitor("José");
 visitor6 : Visitor := new Visitor("Maria");
+
 
 event1 : Event := new Event(schedule1, exhibitor1, 20);
 event2 : Event := new Event(schedule2, exhibitor2, 20);
@@ -91,11 +92,50 @@ operations
 			assertTrue(not event3.overlaps(date4,date4,room3.getId()));
 	);
 	
+	private testParticipants: () ==> ()
+		testParticipants () == (
+			event4.addParticipant(visitor1);
+			event4.addParticipant(visitor2);		
+			assertEqual({visitor1,visitor2}, event4.getParticipants());
+			assertEqual(2, card event4.getParticipants());
+			assertEqual(40, event4.getSalesValueOfEvent());
+			assertEqual(-60, event4.profit());
+			
+			event4.removeParticipant(visitor1);
+			event4.removeParticipant(visitor2);
+			assertEqual(0, event4.getSalesValueOfEvent());
+			assertEqual(-100, event4.profit());
+			
+			event4.addParticipant(visitor1);
+			event4.addParticipant(visitor2);
+			event4.addParticipant(visitor3);
+			event4.addParticipant(visitor4);
+			event4.addParticipant(visitor5);
+			event4.addParticipant(visitor6);
+			
+			assertEqual(6, card event4.getParticipants());
+			assertEqual(120, event4.getSalesValueOfEvent());
+			assertEqual(20, event4.profit());						
+			
+			event4.removeParticipant(visitor1);
+			event4.removeParticipant(visitor2);
+			
+			assertTrue(event4.has_participant(visitor3));
+			assertTrue(not event4.has_participant(visitor1));
+			
+			assertEqual(4, card event4.getParticipants());
+			assertEqual(80, event4.getSalesValueOfEvent());
+			assertEqual(-20, event4.profit());		
+			
+		);
+			
+	
 	public test: () ==> ()
 		test() == (
 			IO`println("\tEvent Tests");
 				testCloseandForceCloseEvent();
 				testGets();
+				testParticipants();
 				testOverlaps();
 			IO`println("\tTestes a eventos terminados com sucesso!");
 			
