@@ -17,25 +17,28 @@ instance variables
   			return self;
   		);
   	
-  	public getInstance : () ==> ExhibitionCentre
+  	public static pure getInstance : () ==> ExhibitionCentre
   		getInstance() == (
   			return centre;
   		);
   		
   	--Getters
-  	public getVisitors : () ==> set of (Visitor)
+  	public pure getVisitors : () ==> set of (Visitor)
   		getVisitors() == (
   			return visitors;
   		);
-  	public getExhibitors : () ==> set of (Exhibitor)
+  		
+  	public pure getExhibitors : () ==> set of (Exhibitor)
   		getExhibitors() == (
   			return exhibitors;
   		);
-  	public getEvents : () ==> set of (Event)
+  		
+  	public pure getEvents : () ==> set of (Event)
   		getEvents() == (
   			return events;
   		);
-  	public getRooms : () ==> set of (Room)
+  		
+  	public pure getRooms : () ==> set of (Room)
   		getRooms() == (
   			return rooms;
   		);
@@ -45,6 +48,7 @@ instance variables
   		registerVisitor(v) == (
   			visitors := visitors union {new Visitor(v)};
   		);
+  		
   	public registerExhibitor : seq of char ==> ()
   		registerExhibitor(e) == (
   			exhibitors := exhibitors union {new Exhibitor(e)};

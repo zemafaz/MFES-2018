@@ -3,7 +3,9 @@ instance variables
   room:Room;
   initialDate:Date;
   finalDate:Date;
-	inv finalDate.compareDate(initialDate) or ((finalDate.compareDate(initialDate) or initialDate.compareDate(finalDate)) = false); 
+	inv (finalDate.compareDate(initialDate) 
+			or ((finalDate.compareDate(initialDate) or initialDate.compareDate(finalDate)) = false)) 
+		and Date`daysElapsed(initialDate,finalDate)>0; 
 	-- The final date needs to be bigger or equal to the initial date
 
 operations

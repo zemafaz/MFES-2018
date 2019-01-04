@@ -1,6 +1,6 @@
 class TestExhibitionCentre is subclass of MyTestCase
 	instance variables
-		centre : ExhibitionCentre := new ExhibitionCentre();
+		centre : ExhibitionCentre := ExhibitionCentre`getInstance();
 		
 	operations
 		private testEntities: () ==> ()
