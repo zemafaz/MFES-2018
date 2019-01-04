@@ -21,13 +21,18 @@ operations
 		closeEvent(currentDate) ==(
 			closed:=true;
 		)
-	pre currentDate.compareDate(schedule.getFinalDate());
+	pre Date`daysElapsed(schedule.getFinalDate(),currentDate)>0 and 
+		CurrentTime`getDay()=currentDate.getDay() and
+		CurrentTime`getMonth()=currentDate.getMonth() and 
+		CurrentTime`getYear()=currentDate.getYear() 
+	post closed;
 	
 	public forceCloseEvent : (seq of char) ==> ()
 		forceCloseEvent(password) ==(
 			closed:=true;
 		)
-	pre password = "password";
+	pre password = "password"
+	post closed;
 	
 	public pure getPricePerParticipant : () ==> nat1
 		getPricePerParticipant() == (return pricePerParticipant);
@@ -47,11 +52,14 @@ operations
 	
 	public pure profit : () ==> int
 		profit () == (
-			return getCostOfEvent()-getSalesValueOfEvent();
+			return getSalesValueOfEvent()-getCostOfEvent();
 		);
 		
 	public pure getExhibitor : () ==> Exhibitor
 		getExhibitor() == (return exhibitor);
+	
+	public pure getParticipants : () ==> set of Visitor
+		getParticipants() == (return participants);
 		
 	public addParticipant : Visitor ==> ()
 		addParticipant(participant) == (

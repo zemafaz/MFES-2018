@@ -1,13 +1,13 @@
 class CurrentTime
 
 operations
-public static getDay : () ==> nat1
+public pure static getDay : () ==> nat1
 getDay() == is not yet specified;
 
-public static getMonth : () ==> nat1
+public pure static getMonth : () ==> nat1
 getMonth() == is not yet specified;
 
-public static getYear : () ==> nat1
+public pure static getYear : () ==> nat1
 getYear() == is not yet specified;
 
 end CurrentTime

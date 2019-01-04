@@ -1,4 +1,4 @@
-class TestEvent
+class TestEvent is subclass of MyTestCase
 
 instance variables
 room1 : Room := new Room(10,100);
@@ -24,12 +24,79 @@ visitor6 : Visitor := new Visitor("Maria");
 event1 : Event := new Event(schedule1, exhibitor1, 20);
 event2 : Event := new Event(schedule2, exhibitor2, 20);
 event3 : Event := new Event(schedule3, exhibitor3, 20);
+event4 : Event := new Event(schedule3, exhibitor3, 20);
 
 operations
 
+	private testCloseandForceCloseEvent: () ==> ()
+		testCloseandForceCloseEvent() == (
+			event1.closeEvent(new Date(CurrentTime`getYear(), CurrentTime`getMonth(), CurrentTime`getDay()));
+			event2.closeEvent(new Date(CurrentTime`getYear(), CurrentTime`getMonth(), CurrentTime`getDay()));
+			event3.forceCloseEvent("password");
+			
+			assertTrue(event1.isClosed());
+			assertTrue(event2.isClosed());
+			assertTrue(event3.isClosed());
+		);
+		
+		private testGets: () ==> ()
+		testGets() == (
+			assertEqual(20,event1.getPricePerParticipant());
+			assertEqual(true,event1.isClosed());
+			assertEqual(400,event1.getCostOfEvent());
+			assertEqual(0, event1.getSalesValueOfEvent());
+			assertEqual(-400, event1.profit());
+			assertEqual(exhibitor1,event1.getExhibitor());
+			assertEqual({}, event1.getParticipants());
+			
+			assertEqual(20,event2.getPricePerParticipant());
+			assertEqual(true,event2.isClosed());
+			assertEqual(100,event2.getCostOfEvent());
+			assertEqual(0, event2.getSalesValueOfEvent());
+			assertEqual(-100, event2.profit());
+			assertEqual(exhibitor2,event2.getExhibitor());
+			assertEqual({}, event2.getParticipants());
+			
+			assertEqual(20,event3.getPricePerParticipant());
+			assertEqual(true,event3.isClosed());
+			assertEqual(100,event3.getCostOfEvent());
+			assertEqual(0, event3.getSalesValueOfEvent());
+			assertEqual(-100, event3.profit());
+			assertEqual(exhibitor3,event3.getExhibitor());
+			assertEqual({}, event3.getParticipants());
+			
+			assertEqual(20,event4.getPricePerParticipant());
+			assertEqual(false,event4.isClosed());
+			assertEqual(100,event4.getCostOfEvent());
+			assertEqual(0, event4.getSalesValueOfEvent());
+			assertEqual(-100, event4.profit());
+			assertEqual(exhibitor3,event4.getExhibitor());
+			assertEqual({}, event4.getParticipants());
+		);
+	
+	
+	private testOverlaps: () ==> ()
+		testOverlaps() == (
+			assertTrue(event1.overlaps(date3,date4,room1.getId()));
+			assertTrue(event1.overlaps(date1,date3,room1.getId()));
+			assertTrue(event1.overlaps(date1,date1,room1.getId()));
+			assertTrue(not event1.overlaps(date1,date1,room2.getId()));
+			assertTrue(not event2.overlaps(date3,date4,room2.getId()));
+			assertTrue(event2.overlaps(date1,date3,room2.getId()));
+			assertTrue(event2.overlaps(date1,date1,room2.getId()));
+			assertTrue(not event2.overlaps(date1,date3,room1.getId()));
+			assertTrue(event3.overlaps(date1,date3,room3.getId()));
+			assertTrue(not event3.overlaps(date1,date1,room3.getId()));
+			assertTrue(event3.overlaps(date3,date4,room3.getId()));
+			assertTrue(not event3.overlaps(date4,date4,room3.getId()));
+	);
+	
 	public test: () ==> ()
 		test() == (
 			IO`println("\tEvent Tests");
+				testCloseandForceCloseEvent();
+				testGets();
+				testOverlaps();
 			IO`println("\tTestes a eventos terminados com sucesso!");
 			
 			--test Pre and Post conditions, leave the function calls commented
