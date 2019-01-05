@@ -1,23 +1,28 @@
 class Event
 
 values
-forceClosePassWord: seq of char = "password";
+forceClosePassWord: seq1 of char = "password";
 
 instance variables
 	public static nextId : nat1 := 1;
 	private id_event : nat1;
-	private name: seq of char;
+	
+	private name: seq1 of char;
 	inv len name <= 50;
+  
   private schedule : Schedule;
+  
   private participants : set of (Visitor);
   inv card participants <= schedule.getRoomSpace() 
   	and not exists p1, p2 in set participants & p1 <> p2 and p1.getId() = p2.getId() ;
+  
   private exhibitor:Exhibitor;
 	private pricePerParticipant : nat1;
 	private closed : bool;
 
 operations
-	public Event : Schedule * Exhibitor * nat1 * seq of char ==> Event
+
+	public Event : Schedule * Exhibitor * nat1 * seq1 of char ==> Event
 		Event (sch, exhi, price, n) == (
 		schedule:=sch;
 		exhibitor:=exhi;
@@ -34,35 +39,35 @@ operations
 		closeEvent(currentDate) ==(
 			closed:=true;
 		)
-	pre Date`daysElapsed(schedule.getFinalDate(),currentDate)>0 and 
-		CurrentTime`getDay()=currentDate.getDay() and
-		CurrentTime`getMonth()=currentDate.getMonth() and 
-		CurrentTime`getYear()=currentDate.getYear() and not closed
-	post closed;
+		pre Date`daysElapsed(schedule.getFinalDate(),currentDate)>1 and 
+			CurrentTime`getDay()=currentDate.getDay() and
+			CurrentTime`getMonth()=currentDate.getMonth() and 
+			CurrentTime`getYear()=currentDate.getYear() and not closed
+		post closed;
 	
-	public pure has_started: () ==> bool
+	public pure has_started : () ==> bool
 		has_started() == (
-			return schedule.getInitialDate().compareDate(new Date(CurrentTime`getYear(), CurrentTime`getMonth(), CurrentTime`getDay()));
+			return not schedule.getInitialDate().compareDate(new Date(CurrentTime`getYear(), CurrentTime`getMonth(), CurrentTime`getDay()));
 		);
 		
-	public pure has_ended: () ==> bool
+	public pure has_ended : () ==> bool
 		has_ended() == (
 			return not schedule.getFinalDate().compareDate(new Date(CurrentTime`getYear(), CurrentTime`getMonth(), CurrentTime`getDay()));
 		);
 		
-	public pure getId: ()==> nat1
+	public pure getId : () ==> nat1
 		getId() == (return id_event);
 		
-	public pure getName : () ==> seq of char
+	public pure getName : () ==> seq1 of char
 		getName() == (return name);
 		
-	public forceCloseEvent : (seq of char) ==> ()
+	public forceCloseEvent : (seq1 of char) ==> ()
 		forceCloseEvent(password) ==(
 			closed:=true;
 			participants := {};
 		)
-	pre not closed and forceClosePassWord = password
-	post closed and card participants = 0;
+		pre not closed and forceClosePassWord = password
+		post closed and card participants = 0;
 	
 	public pure getPricePerParticipant : () ==> nat1
 		getPricePerParticipant() == (return pricePerParticipant);
@@ -70,12 +75,12 @@ operations
 	public pure isClosed : () ==> bool
 		isClosed() == (return closed);
 	
-	public pure getCostOfEvent: () ==> nat1
-	getCostOfEvent() ==(
-			return schedule.getPricePerDay()*schedule.getNumberOfDays();
+	public pure getCostOfEvent : () ==> nat1
+		getCostOfEvent() ==(
+				return schedule.getPricePerDay()*schedule.getNumberOfDays();
 		);
 	
-	public pure getSalesValueOfEvent: () ==> nat
+	public pure getSalesValueOfEvent : () ==> nat
 		getSalesValueOfEvent() ==(
 			return (card participants)*pricePerParticipant;
 		);
@@ -95,16 +100,16 @@ operations
 		addParticipant(participant) == (
 			participants := participants union {participant};
 		)
-	pre participant not in set participants and not closed
-	post participant in set participants;
+		pre participant not in set participants and not closed
+		post participant in set participants;
 		
-	public removeParticipant: Visitor ==> ()
+	public removeParticipant : Visitor ==> ()
 		removeParticipant(participant)==
 		(
 			participants := participants \ {participant};
 		)
-	pre participant  in set participants and not closed
-	post participant not in set participants;
+		pre participant  in set participants and not closed
+		post participant not in set participants;
 	
 	public pure has_participant :  Visitor ==> bool
 		has_participant(participant) == (

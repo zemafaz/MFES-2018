@@ -20,12 +20,13 @@ exhibitor3 : Exhibitor := new Exhibitor("Sofia");
 visitor4 : Visitor := new Visitor("João");
 visitor5 : Visitor := new Visitor("José");
 visitor6 : Visitor := new Visitor("Maria");
+visitor7 : Visitor := new Visitor("Maria");
 
 
 event1 : Event := new Event(schedule1, exhibitor1, 20,"evento1");
-event2 : Event := new Event(schedule2, exhibitor2, 20,"evento1");
-event3 : Event := new Event(schedule3, exhibitor3, 20,"evento1");
-event4 : Event := new Event(schedule3, exhibitor3, 20,"evento1");
+event2 : Event := new Event(schedule2, exhibitor2, 20,"evento2");
+event3 : Event := new Event(schedule3, exhibitor3, 20,"evento3");
+event4 : Event := new Event(schedule3, exhibitor3, 20,"evento4");
 
 operations
 
@@ -49,6 +50,10 @@ operations
 			assertEqual(-400, event1.profit());
 			assertEqual(exhibitor1,event1.getExhibitor());
 			assertEqual({}, event1.getParticipants());
+			assertTrue(event1.has_started());
+			assertTrue(event1.has_ended());
+			assertEqual(1, event1.getId());
+			assertEqual("evento1", event1.getName());
 			
 			assertEqual(20,event2.getPricePerParticipant());
 			assertEqual(true,event2.isClosed());
@@ -57,6 +62,10 @@ operations
 			assertEqual(-100, event2.profit());
 			assertEqual(exhibitor2,event2.getExhibitor());
 			assertEqual({}, event2.getParticipants());
+			assertTrue(event2.has_started());
+			assertTrue(event2.has_ended());
+			assertEqual(2, event2.getId());
+			assertEqual("evento2", event2.getName());
 			
 			assertEqual(20,event3.getPricePerParticipant());
 			assertEqual(true,event3.isClosed());
@@ -65,6 +74,10 @@ operations
 			assertEqual(-100, event3.profit());
 			assertEqual(exhibitor3,event3.getExhibitor());
 			assertEqual({}, event3.getParticipants());
+			assertTrue(event3.has_started());
+			assertTrue(event3.has_ended());
+			assertEqual(3, event3.getId());
+			assertEqual("evento3", event3.getName());
 			
 			assertEqual(20,event4.getPricePerParticipant());
 			assertEqual(false,event4.isClosed());
@@ -73,6 +86,10 @@ operations
 			assertEqual(-100, event4.profit());
 			assertEqual(exhibitor3,event4.getExhibitor());
 			assertEqual({}, event4.getParticipants());
+			assertTrue(event4.has_started());
+			assertTrue(event4.has_ended());
+			assertEqual(4, event4.getId());
+			assertEqual("evento4", event4.getName());
 		);
 	
 	
@@ -128,7 +145,51 @@ operations
 			assertEqual(-20, event4.profit());		
 			
 		);
-			
+		
+		--test Pre and Post conditions
+	private testInvName: () ==> ()
+		testInvName () == (
+			(dcl NameTooBig : Event :=new Event(schedule1, exhibitor1, 20,"O meu nome tem mais de cinquenta caracteres por isso dá erro");
+				assertEqual("O meu nome tem mais de cinquenta caracteres por isso dá erro",NameTooBig.getName());
+			);
+		);
+		
+	private testLimitOfParticipants: () ==> ()
+		testLimitOfParticipants () == (
+			event4.addParticipant(visitor1);
+			event4.addParticipant(visitor2);
+			assertEqual(6, card event4.getParticipants());
+			--fails
+			event4.addParticipant(visitor7);
+			assertEqual(7, card event4.getParticipants());
+		);
+		
+	private testCloseEventPre: () ==> ()
+		testCloseEventPre () == (
+			(dcl currentDate : Date := new Date(CurrentTime`getYear(),CurrentTime`getMonth(),CurrentTime`getDay()),
+			  schedule : Schedule := new Schedule(room1, currentDate,currentDate),
+				event : Event := new Event(schedule,exhibitor1,100,"event");
+				event.closeEvent(currentDate);
+				assertTrue(event.isClosed());
+			);
+		);
+		
+	private testForceCloseEventWrongPassword: () ==> ()
+		testForceCloseEventWrongPassword () == (
+			event4.forceCloseEvent("testpassword");
+		);
+	
+	private testaddParticipantToClosedEvent: () ==> ()
+		testaddParticipantToClosedEvent () == (
+			event4.closeEvent(new Date(CurrentTime`getYear(), CurrentTime`getMonth(), CurrentTime`getDay()));
+			event4.addParticipant(visitor1);
+		);
+		
+	private testRemoveParticipantFromClosedEvent: () ==> ()
+		testRemoveParticipantFromClosedEvent () == (
+			event4.removeParticipant(visitor1);
+		);
+	
 	
 	public test: () ==> ()
 		test() == (
@@ -139,8 +200,13 @@ operations
 				testOverlaps();
 			IO`println("\tTestes a eventos terminados com sucesso!");
 			
-			--test Pre and Post conditions, leave the function calls commented
-
+			--test Pre and Post conditions, leave the function calls commented~
+			--testInvName();
+			--testLimitOfParticipants();
+			--testCloseEventPre();
+			--testForceCloseEventWrongPassword();
+			--testaddParticipantToClosedEvent();
+			--testRemoveParticipantFromClosedEvent();
 		);
 
 end TestEvent

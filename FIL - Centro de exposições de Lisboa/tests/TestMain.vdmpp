@@ -17,7 +17,7 @@ operations
   	new TestRoom().test();
   	new TestEntity().test();
 		new TestSchedule().test();
-		--new TestEvent().test();
+		new TestEvent().test();
 		--new TestExhibitionCentre().test();
   	IO`println("Testes terminados com sucesso!");
  	);

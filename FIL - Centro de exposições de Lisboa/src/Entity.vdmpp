@@ -2,7 +2,7 @@ class Entity
 	instance variables
 		protected id: nat1;
 		
-		protected name: seq of char;
+		protected name: seq1 of char;
 		inv len name <= 50;
 		
 	operations
@@ -11,7 +11,7 @@ class Entity
 		getId() == (return id);
 		
 		--Returns the name of an entity
-		public pure getName : () ==> seq of char
+		public pure getName : () ==> seq1 of char
 		getName() == (return name);
 		
 end Entity

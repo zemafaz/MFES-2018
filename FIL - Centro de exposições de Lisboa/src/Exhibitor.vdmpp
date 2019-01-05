@@ -4,7 +4,7 @@ class Exhibitor is subclass of Entity
 	
 	operations
 		--Constructor
-		public Exhibitor : seq of char ==> Exhibitor
+		public Exhibitor : seq1 of char ==> Exhibitor
 			Exhibitor(n) == (
 				id := nextId;
 				nextId := nextId + 1;
