@@ -1,8 +1,8 @@
 class Schedule
 instance variables
-  room:Room;
-  initialDate:Date;
-  finalDate:Date;
+  private room:Room;
+  private initialDate:Date;
+  private finalDate:Date;
 	inv (finalDate.compareDate(initialDate) 
 			or ((finalDate.compareDate(initialDate) or initialDate.compareDate(finalDate)) = false)) 
 		and Date`daysElapsed(initialDate,finalDate)>0; 

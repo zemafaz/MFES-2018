@@ -6,7 +6,7 @@ forceClosePassWord: seq of char = "password";
 instance variables
 	public static nextId : nat1 := 1;
 	private id_event : nat1;
-	protected name: seq of char;
+	private name: seq of char;
 	inv len name <= 50;
   private schedule : Schedule;
   private participants : set of (Visitor);

@@ -179,7 +179,57 @@ instance variables
 		pre room in set rooms
 		post room not in set rooms;
 		
+		--other gets
 		
+		public pure getAvailableRooms: Date*Date ==> set of Room
+			getAvailableRooms(iDate, fDate) == (
+				return {room | room in set rooms 
+				& forall event in set events & not event.overlaps(iDate,fDate,room.getId()) };
+			)
+		pre fDate.compareDate(iDate) or ((fDate.compareDate(iDate) or fDate.compareDate(iDate)) = false);
+		
+		public pure overlapsEvents: Date*Date*nat1 ==> bool
+			overlapsEvents(iDate,fDate,idRoom) == (return forall event in set events & not event.overlaps(iDate, fDate, idRoom))
+		pre fDate.compareDate(iDate) or ((fDate.compareDate(iDate) or fDate.compareDate(iDate)) = false);
+		
+		public pure getEventsFromVisitor : Visitor ==> set of Event
+			getEventsFromVisitor(visitor) == (
+				return {event | event in set events & event.has_participant(visitor)};
+			)
+		pre visitor in set visitors;
+			
+		public pure getEventsFromExhibitor : Exhibitor ==> set of Event
+			getEventsFromExhibitor(exhibitor) == (
+				return {event | event in set events & event.getExhibitor()=exhibitor};
+			)
+		pre exhibitor in set exhibitors;
+		
+		public pure getEventStatistics: Event ==> seq of int
+			getEventStatistics(event) ==(
+			 return [event.getPricePerParticipant(),event.getCostOfEvent(),event.getSalesValueOfEvent(),event.profit(), card event.getParticipants()];
+			);
+		
+		public pure totalMoneySpent : Visitor ==> nat
+			totalMoneySpent (visitor) ==(
+				(dcl total: nat :=0;
+					for all event in set events 
+						do if event.has_participant(visitor)
+							then total:= total+event.getPricePerParticipant();
+					return total;
+				);
+			)
+			pre visitor in set visitors;
+		
+		public pure totalProfit : Exhibitor ==> nat
+			totalProfit (exhibitor) == (
+				(dcl total: nat :=0;
+					for all event in set events 
+						do if event.getExhibitor() = exhibitor
+							then total:= total+event.profit();
+					return total;
+				);
+			)
+			pre exhibitor in set exhibitors;
 		 	
 		
   		

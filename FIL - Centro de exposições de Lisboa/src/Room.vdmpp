@@ -1,6 +1,6 @@
 class Room
 instance variables
-public static nextId : nat1 := 1;
+private static nextId : nat1 := 1;
 private id_room : nat1;
 private space: nat1;
 private pricePerDay: nat1;
