@@ -69,27 +69,34 @@ operations
 
 		);
 
-		
+	--test Pre and Post conditions
 			--Year must be >2018
-	private testPreConditionYearDate: () ==> ()
-		testPreConditionYearDate() == (
+	private testInvYearDate: () ==> ()
+		testInvYearDate() == (
 			(dcl wrongYear: Date := new Date(2018,1,1);
 			assertEqual(2018,wrongYear.getYear()));
 		);
 		
 		--Month must be between 1 and 12
-	private testPreConditionMonthDate: () ==> ()
-		testPreConditionMonthDate() == (
+	private testInvMonthDate: () ==> ()
+		testInvMonthDate() == (
 			(dcl wrongMonth: Date := new Date(2019,13,1);
 			assertEqual(13,wrongMonth.getMonth()));
 		);
 		
 	--The day must respect the calender
-	private testPreConditionDayDate: () ==> ()
-		testPreConditionDayDate() == (
+	private testInvDayDate: () ==> ()
+		testInvDayDate() == (
 			(dcl wrongDay: Date := new Date(2019,2,29);
 			assertEqual(29,wrongDay.getDay()));
 		);
+		
+	private testPreConDitionDaysElapsed: () ==> ()
+		testPreConDitionDaysElapsed() == (
+			assertEqual(1,Date`daysElapsed(date2,date1));
+		);
+		
+	
 	 	
 	public  test: () ==> ()
 	 	test() ==
@@ -103,9 +110,10 @@ operations
 	  	
 	  	--test Pre and Post conditions, leave the function calls commented
 	  	
-	  	--testPreConditionYearDate();
-	  	--testPreConditionMonthDate();
-	  	--testPreConditionDayDate();
+	  	--testInvYearDate();
+	  	--testInvMonthDate();
+	  	--testInvDayDate();
+	  	--testPreConDitionDaysElapsed();
 	 	);
 
 end TestDate

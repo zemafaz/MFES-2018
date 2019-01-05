@@ -32,17 +32,6 @@ operations
 			assertTrue(Room`roomExists(3));
 			assertTrue(not Room`roomExists(4));			
 	);
-	
-	private testSpace0: () ==> ()
-		testSpace0() == (
-			(dcl room: Room := new Room(0,100);	
-				assertEqual(0,room.getSpace()));
-	);
-	
-	private testExists0: () ==> ()
-		testExists0() == (
-			assertTrue(Room`roomExists(1-1));
-	);
 	 	
 	public  test: () ==> ()
 	 	test() ==
@@ -53,8 +42,6 @@ operations
 	  	IO`println("\tTestes das salas terminados com sucesso!");
 	  	
 	  	--test Pre and Post conditions, leave the function calls commented
-			--testSpace0();
-			--testExists0();
 	 	);
 
 end TestRoom

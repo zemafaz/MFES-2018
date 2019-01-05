@@ -5,13 +5,12 @@ class Exhibitor is subclass of Entity
 	operations
 		--Constructor
 		public Exhibitor : seq of char ==> Exhibitor
-			Exhibitor(n) == 
-			(
+			Exhibitor(n) == (
 				id := nextId;
 				nextId := nextId + 1;
 				name := n;
 				return self;
 			)
-			post nextId>id;
+		post nextId>id;
 		
 end Exhibitor

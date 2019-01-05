@@ -1,8 +1,10 @@
 class Entity
 	instance variables
 		protected id: nat1;
+		
 		protected name: seq of char;
 		inv len name <= 50;
+		
 	operations
 		--Returns the id of an entity	
 		public pure getId : () ==> nat1

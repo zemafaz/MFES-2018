@@ -32,7 +32,7 @@ operations
 		getPricePerDay() == (return pricePerDay);
 
 	--returns true if a room Exists, false otherwise
-	public static roomExists : nat1 ==> bool
+	public pure static roomExists : nat1 ==> bool
 		roomExists(idToCheck) == (return idToCheck<nextId);			
 
 end Room

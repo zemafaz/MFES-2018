@@ -2,6 +2,7 @@ class Schedule
 instance variables
   private room:Room;
   private initialDate:Date;
+  
   private finalDate:Date;
 	inv (finalDate.compareDate(initialDate) 
 			or ((finalDate.compareDate(initialDate) or initialDate.compareDate(finalDate)) = false)) 
@@ -9,6 +10,7 @@ instance variables
 	-- The final date needs to be bigger or equal to the initial date
 
 operations
+	--Constructor
 	public Schedule : Room*Date*Date ==> Schedule
 		Schedule(r, iDate, fDate) == 
 		(
@@ -18,40 +20,41 @@ operations
 			return self;
 		);
 		
-		--returns the maximum number of allowed people that is present in the room 
-		public pure getRoomSpace : () ==> nat1
-			getRoomSpace() == (return room.getSpace());	
+	--returns the maximum number of allowed people that is present in the room 
+	public pure getRoomSpace : () ==> nat1
+		getRoomSpace() == (return room.getSpace());	
 			
-		--returns the id of the reserved room
-		public pure getIdRoom : () ==> nat1
-			getIdRoom() == (return room.getId());
+	--returns the id of the reserved room
+	public pure getIdRoom : () ==> nat1
+		getIdRoom() == (return room.getId());
 			
-		--returns the price per day of the reserved room	
-		public pure getPricePerDay : () ==> nat1
-			getPricePerDay()== (return room.getPricePerDay());
+	--returns the price per day of the reserved room	
+	public pure getPricePerDay : () ==> nat1
+		getPricePerDay()== (return room.getPricePerDay());
 		
-		--returns the final date	
-		public pure getFinalDate : () ==> Date
-			getFinalDate()== (return finalDate);
+	--returns the final date	
+	public pure getFinalDate : () ==> Date
+		getFinalDate()== (return finalDate);
 			
-		--returns the initial date	
-		public pure getInitialDate : () ==> Date
-			getInitialDate()== (return initialDate);
+	--returns the initial date	
+	public pure getInitialDate : () ==> Date
+		getInitialDate()== (return initialDate);
 		
-		--returns the number of days beetween the initial date and the final date
-		public pure getNumberOfDays : () ==>nat1
-			getNumberOfDays() == (return Date`daysElapsed(initialDate,finalDate));
+	--returns the number of days beetween the initial date and the final date
+	public pure getNumberOfDays : () ==>nat1
+		getNumberOfDays() == (return Date`daysElapsed(initialDate,finalDate));
 		
-		-- checks if 2 given dates overlap this schedule/reservation
-		public pure overlaps : Date * Date * nat1 ==> bool
-			overlaps(iDate, fDate, idRoom) == (
-				if idRoom<>room.getId()
-					then return false
-				else if iDate.compareDate(finalDate)
-					then return false
-				else if initialDate.compareDate(fDate)
-					then return false
-				else return true
-			)
-			pre fDate.compareDate(iDate) or ((fDate.compareDate(iDate) or iDate.compareDate(fDate)) = false);  -- that initial date needs to be <= to the final date	
+	-- checks if 2 given dates overlap this schedule/reservation
+	public pure overlaps : Date * Date * nat1 ==> bool
+		overlaps(iDate, fDate, idRoom) == (
+			if idRoom<>room.getId()
+				then return false
+			else if iDate.compareDate(finalDate)
+				then return false
+			else if initialDate.compareDate(fDate)
+				then return false
+			else return true
+		)
+	pre (fDate.compareDate(iDate) or ((fDate.compareDate(iDate) or iDate.compareDate(fDate)) = false)) and Room`roomExists(idRoom);  -- that initial date needs to be <= to the final date	
+	
 end Schedule

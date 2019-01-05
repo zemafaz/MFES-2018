@@ -6,8 +6,7 @@ class Visitor is subclass of Entity
 	operations
 	--Constructor
 		public Visitor : seq of char ==> Visitor
-		Visitor(n) == 
-		(
+		Visitor(n) == (
 			id := nextId;
 			nextId := nextId + 1;
 			name := n;
