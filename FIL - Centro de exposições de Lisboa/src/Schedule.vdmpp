@@ -33,6 +33,10 @@ operations
 		--returns the final date	
 		public pure getFinalDate : () ==> Date
 			getFinalDate()== (return finalDate);
+			
+		--returns the initial date	
+		public pure getInitialDate : () ==> Date
+			getInitialDate()== (return initialDate);
 		
 		--returns the number of days beetween the initial date and the final date
 		public pure getNumberOfDays : () ==>nat1

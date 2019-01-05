@@ -43,15 +43,144 @@ instance variables
   			return rooms;
   		);
   		
-  	--Registers
+  	public pure  getEvent : nat1 ==> Event
+			getEvent(id) == (
+				return iota x in set events & x.getId() = id;
+			)
+		pre exists1 x in set events & x.getId()=id;
+			
+		public pure  getRoom : nat1 ==> Room
+			getRoom(id) == (
+				return iota x in set rooms & x.getId() = id;
+			)
+		pre exists1 x in set rooms & x.getId()=id;
+		
+		public pure  getVisitor : nat1 ==> Visitor
+			getVisitor(id) == (
+				return iota x in set visitors & x.getId() = id;
+			)
+		pre exists1 x in set rooms & x.getId()=id;
+		
+		public pure  getExhibitor : nat1 ==> Exhibitor
+			getExhibitor(id) == (
+				return iota x in set exhibitors & x.getId() = id;
+			)
+		pre exists1 x in set rooms & x.getId()=id;
+  		
+  	--Entity stuff
   	public registerVisitor: seq of char ==> ()
   		registerVisitor(v) == (
   			visitors := visitors union {new Visitor(v)};
-  		);
+  		)
+  	post exists v1 in set visitors & v1.getName()=v 
+  		and not exists v2, v3 in set visitors & v2 <> v3 and v2.getId() = v3.getId();
   		
   	public registerExhibitor : seq of char ==> ()
   		registerExhibitor(e) == (
   			exhibitors := exhibitors union {new Exhibitor(e)};
-  		);
+  		)
+  	post exists e1 in set exhibitors & e1.getName()=e 
+  		and not exists e2, e3 in set exhibitors & e2 <> e3 and e2.getId() = e3.getId();
+  	
+  	public removeVisitor: Visitor ==> ()
+			removeVisitor(visitor)==
+			(
+				visitors := visitors \ {visitor};
+				for all event in set events do 
+					if not event.isClosed() and event.has_participant(visitor)
+						then event.removeParticipant(visitor);
+					
+			)
+		pre visitor in set visitors
+		post visitor not in set visitors 
+			and not exists event in set events & event.has_participant(visitor) and not event.isClosed();
+		
+		public removeExhibitor: Exhibitor ==> ()
+			removeExhibitor(exhibitor)==
+			(
+				exhibitors := exhibitors \ {exhibitor};
+				for all event in set events do 
+					if not event.isClosed() and event.getExhibitor()=exhibitor
+						then removeEvent(event);
+			)
+		pre exhibitor in set exhibitors
+		post exhibitor not in set exhibitors
+				and not exists event in set events & event.getExhibitor()=exhibitor and  not event.isClosed();
+		
+		--event stuff
+		public removeEvent: Event ==> ()
+			removeEvent (event)== (
+				events := events \ {event};
+			)
+		pre not event.isClosed() and event in set events
+			and not event.has_started();
+			
+		public createEvent: Date*Date*Room*Exhibitor*nat1*seq of char ==> ()
+			createEvent(initialDate,finalDate,room,exhibitor, price, name) == (
+				(dcl shcedule: Schedule := new Schedule(room,initialDate,finalDate), 
+					eventtoadd : Event := new Event (shcedule,exhibitor,price,name);
+					events:=events union {eventtoadd});
+			)
+		pre exhibitor in set exhibitors and room in set rooms and forall event in set events & not event.overlaps(initialDate, finalDate, room.getId())
+		post exists1 event in set events & event.overlaps(initialDate, finalDate, room.getId());
+		
+		public closeCompletedEvents : () ==> ()
+			closeCompletedEvents()==(
+			(dcl currentDate : Date := new Date(CurrentTime`getYear(), CurrentTime`getMonth(), CurrentTime`getDay());
+				for all event in set events
+					do if(event.has_ended() and not event.isClosed())
+						then event.closeEvent(currentDate);
+					);
+			);
+			
+		public forceCloseEvent : Event*seq of char ==> ()
+			forceCloseEvent(event,password) == (
+				event.forceCloseEvent(password);
+			)
+		pre event in set events;
+		
+		public addParticipantToEvent : Event * Visitor ==> ()
+			addParticipantToEvent(event,participant) == (
+				event.addParticipant(participant);
+			)
+		pre event in set events and participant in set visitors;
+		
+		public removeParticipantFromEvent : Event * Visitor ==> ()
+			removeParticipantFromEvent(event,participant) == (
+				event.removeParticipant(participant);
+			)
+		pre event in set events and participant in set visitors;
+		
+		public addParticipantsToEvent : Event * set of Visitor ==> ()
+			addParticipantsToEvent(event,participants) == (
+			for all participant in set participants
+				do event.addParticipant(participant);
+			)
+		pre event in set events and (participants subset visitors);
+		
+		public removeParticipantsFromEvent : Event * set of Visitor ==> ()
+			removeParticipantsFromEvent(event,participants) == (
+			for all participant in set participants
+				do event.removeParticipant(participant);
+			)
+		pre event in set events and (participants subset visitors);
+		
+		--room stuff
+		public addRoom : nat1 * nat1 ==> ()
+		 addRoom(priceToSchedule, space) == (
+		 	rooms := rooms union {new Room(space,priceToSchedule)}
+		 );
+		
+		--precisa de comentários de pq de não retirar os eventos já reservados 
+		public removeRoom : Room ==> ()
+		 removeRoom (room) == (
+		 		rooms := rooms \ {room};
+		 )
+		pre room in set rooms
+		post room not in set rooms;
+		
+		
+		 	
+		
   		
 end ExhibitionCentre

@@ -22,10 +22,10 @@ visitor5 : Visitor := new Visitor("José");
 visitor6 : Visitor := new Visitor("Maria");
 
 
-event1 : Event := new Event(schedule1, exhibitor1, 20);
-event2 : Event := new Event(schedule2, exhibitor2, 20);
-event3 : Event := new Event(schedule3, exhibitor3, 20);
-event4 : Event := new Event(schedule3, exhibitor3, 20);
+event1 : Event := new Event(schedule1, exhibitor1, 20,"evento1");
+event2 : Event := new Event(schedule2, exhibitor2, 20,"evento1");
+event3 : Event := new Event(schedule3, exhibitor3, 20,"evento1");
+event4 : Event := new Event(schedule3, exhibitor3, 20,"evento1");
 
 operations
 

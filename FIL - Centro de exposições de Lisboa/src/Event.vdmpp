@@ -2,23 +2,33 @@ class Event
 
 values
 forceClosePassWord: seq of char = "password";
+
 instance variables
-  schedule : Schedule;
-  participants : set of (Visitor);
-  inv card participants <= schedule.getRoomSpace();
-  exhibitor:Exhibitor;
-	pricePerParticipant : nat1;
-	closed : bool;
+	public static nextId : nat1 := 1;
+	private id_event : nat1;
+	protected name: seq of char;
+	inv len name <= 50;
+  private schedule : Schedule;
+  private participants : set of (Visitor);
+  inv card participants <= schedule.getRoomSpace() 
+  	and not exists p1, p2 in set participants & p1 <> p2 and p1.getId() = p2.getId() ;
+  private exhibitor:Exhibitor;
+	private pricePerParticipant : nat1;
+	private closed : bool;
 
 operations
-	public Event : Schedule * Exhibitor * nat1 ==> Event
-		Event (sch, exhi, price) == (
+	public Event : Schedule * Exhibitor * nat1 * seq of char ==> Event
+		Event (sch, exhi, price, n) == (
 		schedule:=sch;
 		exhibitor:=exhi;
 		pricePerParticipant:=price;
 		closed := false;
 		participants := {};
-		);
+		id_event := nextId;
+		nextId := nextId + 1;
+		name :=n;
+		)
+		post nextId>id_event;
 		
 	public closeEvent : Date ==> ()
 		closeEvent(currentDate) ==(
@@ -27,15 +37,32 @@ operations
 	pre Date`daysElapsed(schedule.getFinalDate(),currentDate)>0 and 
 		CurrentTime`getDay()=currentDate.getDay() and
 		CurrentTime`getMonth()=currentDate.getMonth() and 
-		CurrentTime`getYear()=currentDate.getYear() 
+		CurrentTime`getYear()=currentDate.getYear() and not closed
 	post closed;
 	
+	public pure has_started: () ==> bool
+		has_started() == (
+			return schedule.getInitialDate().compareDate(new Date(CurrentTime`getYear(), CurrentTime`getMonth(), CurrentTime`getDay()));
+		);
+		
+	public pure has_ended: () ==> bool
+		has_ended() == (
+			return not schedule.getFinalDate().compareDate(new Date(CurrentTime`getYear(), CurrentTime`getMonth(), CurrentTime`getDay()));
+		);
+		
+	public pure getId: ()==> nat1
+		getId() == (return id_event);
+		
+	public pure getName : () ==> seq of char
+		getName() == (return name);
+		
 	public forceCloseEvent : (seq of char) ==> ()
 		forceCloseEvent(password) ==(
 			closed:=true;
+			participants := {};
 		)
-	pre forceClosePassWord = password
-	post closed;
+	pre not closed and forceClosePassWord = password
+	post closed and card participants = 0;
 	
 	public pure getPricePerParticipant : () ==> nat1
 		getPricePerParticipant() == (return pricePerParticipant);
@@ -69,8 +96,7 @@ operations
 			participants := participants union {participant};
 		)
 	pre participant not in set participants and not closed
-	post participant in set participants and
-		(not exists p1, p2 in set participants & p1 <> p2 and p1.getId() = p2.getId());
+	post participant in set participants;
 		
 	public removeParticipant: Visitor ==> ()
 		removeParticipant(participant)==
