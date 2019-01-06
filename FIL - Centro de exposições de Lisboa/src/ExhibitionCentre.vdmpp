@@ -98,7 +98,7 @@ class ExhibitionCentre
 		removeVisitor(visitor) == (
 			visitors := visitors \ {visitor};
 			for all event in set events do 
-				if not event.isClosed() and event.has_participant(visitor) and not event.has_started()
+				if event.has_participant(visitor) and not event.has_started() and not event.isClosed()
 					then event.removeParticipant(visitor);
 		)
 		pre visitor in set visitors

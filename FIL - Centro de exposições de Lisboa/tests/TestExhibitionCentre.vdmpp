@@ -41,14 +41,21 @@ class TestExhibitionCentre is subclass of MyTestCase
 				assertEqual(exhibitor3, centre.getExhibitor(exhibitor3.getId()));
 				
 				centre.removeVisitor(visitor4);
-				assertEqual({event2,event4},centre.getEventsFromVisitor(visitor2));
+				assertEqual({event2,event4},{event | event in set centre.getEvents() & event.has_participant(visitor4)});
 				centre.removeVisitor(visitor2);
-				assertEqual({event1},centre.getEventsFromVisitor(visitor2));
-				centre.removeExhibitor(exhibitor1);
-				centre.removeExhibitor(exhibitor3);
+				assertEqual({event1},{event | event in set centre.getEvents() & event.has_participant(visitor2)});
 				
-				assertEqual({visitor3,visitor4,visitor5},centre.getVisitors());
-				assertEqual({exhibitor2,exhibitor4,exhibitor5},centre.getExhibitors());			
+				assertEqual({event1,event5}, centre.getEventsFromExhibitor(exhibitor1));
+				centre.removeExhibitor(exhibitor1);
+				assertEqual({event1,event5}, {event | event in set centre.getEvents() & event.getExhibitor() = exhibitor1});
+				
+				assertEqual(4, card centre.getEventsFromExhibitor(exhibitor2));
+				centre.removeExhibitor(exhibitor2);
+				assertEqual(1, card {event | event in set centre.getEvents() & event.getExhibitor() = exhibitor2});
+				
+				assertEqual({event4}, centre.getEventsFromExhibitor(exhibitor4));
+				centre.removeExhibitor(exhibitor4);
+				assertEqual({event4}, {event | event in set centre.getEvents() & event.getExhibitor() = exhibitor4});	
 				return;
 			);
 			
