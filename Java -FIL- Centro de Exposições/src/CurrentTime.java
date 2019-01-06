@@ -1,22 +1,38 @@
 
 import java.util.*;
+import java.util.Date;
+
 import org.overture.codegen.runtime.*;
 
 @SuppressWarnings("all")
 public class CurrentTime {
   public static Number getDay() {
 
-    throw new UnsupportedOperationException();
+	  	Date today = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(today); // don't forget this if date is arbitrary
+		int day = cal.get(Calendar.DAY_OF_MONTH);
+		return day;
   }
 
   public static Number getMonth() {
 
-    throw new UnsupportedOperationException();
+		Date today = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(today); // don't forget this if date is arbitrary
+		int month = cal.get(Calendar.MONTH);
+
+		return month+1;
   }
 
   public static Number getYear() {
 
-    throw new UnsupportedOperationException();
+		Date today = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(today); // don't forget this if date is arbitrary
+		int year = cal.get(Calendar.YEAR);
+
+		return year;
   }
 
   public CurrentTime() {}
