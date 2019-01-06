@@ -70,12 +70,7 @@ class ExhibitionCentre
   --Given an Id Returns a specific Event		
   public pure  getEvent : nat1 ==> Event
 		getEvent(id) == (
-			(dcl event: Event;
-				for all x in set events
-					do if x.getId() = id
-						then event:= x;
-				return event;
-			);
+			return iota x in set events & x.getId()=id;
 		)
 		pre exists1 x in set events & x.getId()=id;
 	
