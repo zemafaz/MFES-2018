@@ -23,6 +23,7 @@ public class Exhibitor extends Entity {
 
   public String toString() {
 
-    return "Exhibitor{" + "nextId := " + Utils.toString(nextId) + "}";
+    return "ID := " + Utils.toString(id) + 
+    	   "\tName := " + name + "\n";
   }
 }

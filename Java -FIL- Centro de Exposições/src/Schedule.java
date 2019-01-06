@@ -75,13 +75,7 @@ public class Schedule {
 
   public String toString() {
 
-    return "Schedule{"
-        + "room := "
-        + Utils.toString(room)
-        + ", initialDate := "
-        + Utils.toString(initialDate)
-        + ", finalDate := "
-        + Utils.toString(finalDate)
-        + "}";
+    return "Starting Date = " + initialDate.toString() + "\tClosing date = " + finalDate.toString() +
+    		"\n\tScheduled Room = " + room.toString() +"\n";
   }
 }

@@ -23,6 +23,7 @@ public class Visitor extends Entity {
 
   public String toString() {
 
-    return "Visitor{" + "nextId := " + Utils.toString(nextId) + "}";
+    return "ID = " + Utils.toString(id) + 
+    	"\tName = " + name + "\n";
   }
 }

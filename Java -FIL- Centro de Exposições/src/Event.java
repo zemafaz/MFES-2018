@@ -126,25 +126,24 @@ public class Event {
 
   public String toString() {
 
-    return "Event{"
-        + "forceClosePassWord = "
-        + Utils.toString(forceClosePassWord)
-        + ", nextId := "
-        + Utils.toString(nextId)
-        + ", id_event := "
-        + Utils.toString(id_event)
-        + ", name := "
-        + Utils.toString(name)
-        + ", schedule := "
-        + Utils.toString(schedule)
-        + ", participants := "
-        + Utils.toString(participants)
-        + ", exhibitor := "
-        + Utils.toString(exhibitor)
-        + ", pricePerParticipant := "
-        + Utils.toString(pricePerParticipant)
-        + ", closed := "
-        + Utils.toString(closed)
-        + "}";
+    return "Event ID: " + Utils.toString(id_event) +
+    		"\n\t Schedule: " + schedule.toString() + 
+    		"\t Name: " + name + 
+    		"\n\t Exhibitor: " + exhibitor.toString()+
+    		"\t Price To Participate: " + Utils.toString(pricePerParticipant) +"\n";
+  }
+  
+  public String toStringComplete() {
+	  String stringtoreturn=toString() +
+			  "\t Closed: "+ closed.toString() + 
+			  "\n\t Cost for the Exhibitor: "+ Utils.toString(getCostOfEvent())+
+			  "\n\t Total Sales: " + Utils.toString(getSalesValueOfEvent()) + 
+			  "\n\t Profit for the exhibitor: " + Utils.toString(profit()) + 
+			  "\n\tParticipants:\n";
+	  for (Iterator iterator_24 = participants.iterator(); iterator_24.hasNext(); ) {
+	        Visitor x = (Visitor) iterator_24.next();
+	        stringtoreturn+="\t"+x.toString();
+	      }
+	  return stringtoreturn+"\n";
   }
 }

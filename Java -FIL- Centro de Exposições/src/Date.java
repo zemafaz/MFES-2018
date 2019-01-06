@@ -252,13 +252,6 @@ public class Date {
 
   public String toString() {
 
-    return "Date{"
-        + "year := "
-        + Utils.toString(year)
-        + ", month := "
-        + Utils.toString(month)
-        + ", day := "
-        + Utils.toString(day)
-        + "}";
+    return Utils.toString(year) + "/" + Utils.toString(month)  + "/" + Utils.toString(day) + "\n";
   }
 }

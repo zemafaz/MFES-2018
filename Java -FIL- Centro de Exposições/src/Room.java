@@ -47,15 +47,8 @@ public class Room {
 
   public String toString() {
 
-    return "Room{"
-        + "nextId := "
-        + Utils.toString(nextId)
-        + ", id_room := "
-        + Utils.toString(id_room)
-        + ", space := "
-        + Utils.toString(space)
-        + ", pricePerDay := "
-        + Utils.toString(pricePerDay)
-        + "}";
+    return 	"Room ID:" + Utils.toString(id_room) + 
+    		"\tPrice Per Day:" + Utils.toString(pricePerDay) + 
+    		"\tNumber of people allowed:" + Utils.toString(space) + "\n";
   }
 }
