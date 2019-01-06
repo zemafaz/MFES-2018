@@ -1,231 +1,278 @@
 class TestExhibitionCentre is subclass of MyTestCase
-	instance variables
-		private centre : ExhibitionCentre := ExhibitionCentre`getInstance();	
-		private visitor1: Visitor := centre.registerVisitor("visitor1");
-		private visitor2: Visitor := centre.registerVisitor("visitor2");
-		private visitor3: Visitor := centre.registerVisitor("visitor3");
-		private visitor4: Visitor := centre.registerVisitor("visitor4");
-		private visitor5: Visitor := centre.registerVisitor("visitor5");
-		private exhibitor1 : Exhibitor := centre.registerExhibitor("exhibitor1");
-		private exhibitor3 : Exhibitor := centre.registerExhibitor("exhibitor2");
-		private exhibitor2 : Exhibitor := centre.registerExhibitor("exhibitor3");
-		private exhibitor4 : Exhibitor := centre.registerExhibitor("exhibitor4");
-		private exhibitor5 : Exhibitor := centre.registerExhibitor("exhibitor5");
-		private room1: Room;
-		private room2: Room;
-		private room3: Room;
-		private date1: Date := new Date (2019,1,1);
-		private date2: Date := new Date (2019,1,2);
-		private date3: Date := new Date (2019,1,4);
-		private date4: Date := new Date (3000,1,1);
-		private date5: Date := new Date (3000,2,28);
-		private event1 : Event;
-		private event2 : Event;
-		private event3 : Event;
-		private event4 : Event;
-		private event5 : Event;
-		private event6 : Event;
+
+instance variables
+	private centre : ExhibitionCentre := ExhibitionCentre`getInstance();	
+	private visitor1: Visitor := centre.registerVisitor("visitor1");
+	private visitor2: Visitor := centre.registerVisitor("visitor2");
+	private visitor3: Visitor := centre.registerVisitor("visitor3");
+	private visitor4: Visitor := centre.registerVisitor("visitor4");
+	private visitor5: Visitor := centre.registerVisitor("visitor5");
+	private exhibitor1 : Exhibitor := centre.registerExhibitor("exhibitor1");
+	private exhibitor3 : Exhibitor := centre.registerExhibitor("exhibitor2");
+	private exhibitor2 : Exhibitor := centre.registerExhibitor("exhibitor3");
+	private exhibitor4 : Exhibitor := centre.registerExhibitor("exhibitor4");
+	private exhibitor5 : Exhibitor := centre.registerExhibitor("exhibitor5");
+	private room1: Room := centre.addRoom(30,3); 
+	private room2: Room := centre.addRoom(20,3); 
+	private room3: Room := centre.addRoom(10,3);
+	private date1: Date := new Date (2019,1,1);
+	private date2: Date := new Date (2019,1,2);
+	private date3: Date := new Date (2019,1,4);
+	private date4: Date := new Date (3000,1,1);
+	private date5: Date := new Date (3000,2,28);
+	private event1 : Event;
+	private event2 : Event;
+	private event3 : Event;
+	private event4 : Event;
+	private event5 : Event;
+	private event6 : Event;
 		
 		
 
 		
-	operations
-		private testEntities: () ==> ()
-			testEntities() == (
-				assertEqual({visitor1,visitor2,visitor3,visitor4,visitor5},centre.getVisitors());
-				assertEqual({exhibitor1,exhibitor2,exhibitor3,exhibitor4,exhibitor5},centre.getExhibitors());
-				
-				assertEqual(visitor1, centre.getVisitor(visitor1.getId()));
-				assertEqual(visitor2, centre.getVisitor(visitor2.getId()));
-				assertEqual(exhibitor1, centre.getExhibitor(exhibitor1.getId()));
-				assertEqual(exhibitor3, centre.getExhibitor(exhibitor3.getId()));
-				
-				centre.removeVisitor(visitor4);
-				assertEqual({event2,event4},{event | event in set centre.getEvents() & event.has_participant(visitor4)});
-				centre.removeVisitor(visitor2);
-				assertEqual({event1},{event | event in set centre.getEvents() & event.has_participant(visitor2)});
-				
-				assertEqual({event1,event5}, centre.getEventsFromExhibitor(exhibitor1));
-				centre.removeExhibitor(exhibitor1);
-				assertEqual({event1,event5}, {event | event in set centre.getEvents() & event.getExhibitor() = exhibitor1});
-				
-				assertEqual(4, card centre.getEventsFromExhibitor(exhibitor2));
-				centre.removeExhibitor(exhibitor2);
-				assertEqual(1, card {event | event in set centre.getEvents() & event.getExhibitor() = exhibitor2});
-				
-				assertEqual({event4}, centre.getEventsFromExhibitor(exhibitor4));
-				centre.removeExhibitor(exhibitor4);
-				assertEqual({event4}, {event | event in set centre.getEvents() & event.getExhibitor() = exhibitor4});	
-				return;
-			);
+operations
+	
+	private testEntities: () ==> ()
+		testEntities() == (
+			assertEqual({visitor1,visitor2,visitor3,visitor4,visitor5},centre.getVisitors());
+			assertEqual({exhibitor1,exhibitor2,exhibitor3,exhibitor4,exhibitor5},centre.getExhibitors());
 			
-		private testRooms: () ==> ()
-			testRooms() == (
-				room1 := centre.addRoom(30,3); 
-				room2 := centre.addRoom(20,3); 
-				room3 := centre.addRoom(10,3); 
-				
-				assertEqual(3, card centre.getRooms());
-				
-				for all room in set centre.getRooms()
-					do assertEqual(room, centre.getRoom(room.getId()));
-				
-				for all room in set centre.getRooms()
-					do centre.removeRoom(room);
-				
-				assertEqual(0, card centre.getRooms());	
-				
-				room1 := centre.addRoom(30,3); 
-				room2 := centre.addRoom(20,3); 
-				room3 := centre.addRoom(10,3); 
-				
-				assertEqual(3, card centre.getRooms());	
-			);
+			assertEqual(visitor1, centre.getVisitor(visitor1.getId()));
+			assertEqual(visitor2, centre.getVisitor(visitor2.getId()));
+			assertEqual(exhibitor1, centre.getExhibitor(exhibitor1.getId()));
+			assertEqual(exhibitor3, centre.getExhibitor(exhibitor3.getId()));
 			
-		private testEvents: () ==> ()
-			testEvents() == (
-				assertEqual(3, card centre.getRooms());	
-				event1 := centre.createEvent(date1,date2,room1,exhibitor1,20,"event1");
-				event2 := centre.createEvent(date1,date2,room2,exhibitor2,20,"event2");
-				event3 := centre.createEvent(date1,date2,room3,exhibitor3,20,"event3");
-				event4 := centre.createEvent(date3,date4,room1,exhibitor4,20,"event4");
-				event5 := centre.createEvent(date4,date5,room2,exhibitor1,20,"event5");
-				event6 := centre.createEvent(date5,date5,room3,exhibitor2,20,"event6");
+			centre.removeVisitor(visitor4);
+			assertEqual({event2,event4},{event | event in set centre.getEvents() & event.has_participant(visitor4)});
+			centre.removeVisitor(visitor2);
+			assertEqual({event1},{event | event in set centre.getEvents() & event.has_participant(visitor2)});
+			
+			assertEqual({event1,event5}, centre.getEventsFromExhibitor(exhibitor1));
+			centre.removeExhibitor(exhibitor1);
+			assertEqual({event1,event5}, {event | event in set centre.getEvents() & event.getExhibitor() = exhibitor1});
+			
+			assertEqual(4, card centre.getEventsFromExhibitor(exhibitor2));
+			centre.removeExhibitor(exhibitor2);
+			assertEqual(1, card {event | event in set centre.getEvents() & event.getExhibitor() = exhibitor2});
 				
+			assertEqual({event4}, centre.getEventsFromExhibitor(exhibitor4));
+			centre.removeExhibitor(exhibitor4);
+			assertEqual({event4}, {event | event in set centre.getEvents() & event.getExhibitor() = exhibitor4});	
+			return;
+		);
+			
+	private testRooms: () ==> ()
+		testRooms() == (	
+			assertEqual(3, card centre.getRooms());
 				
-				assertEqual(6, card centre.getEvents());
+			for all room in set centre.getRooms()
+				do assertEqual(room, centre.getRoom(room.getId()));
 				
-				for all event in set centre.getEvents()
-					do assertEqual(event, centre.getEvent(event.getId()));
+			for all room in set centre.getRooms()
+				do centre.removeRoom(room);
+			
+			assertEqual(0, card centre.getRooms());	
+				
+			room1 := centre.addRoom(30,3); 
+			room2 := centre.addRoom(20,3); 
+			room3 := centre.addRoom(10,3); 
+			
+			assertEqual(3, card centre.getRooms());	
+		);
+			
+	private testEvents: () ==> ()
+		testEvents() == (
+			assertEqual(3, card centre.getRooms());	
+			event1 := centre.createEvent(date1,date2,room1,exhibitor1,20,"event1");
+			event2 := centre.createEvent(date1,date2,room2,exhibitor2,20,"event2");
+			event3 := centre.createEvent(date1,date2,room3,exhibitor3,20,"event3");
+			event4 := centre.createEvent(date3,date4,room1,exhibitor4,20,"event4");
+			event5 := centre.createEvent(date4,date5,room2,exhibitor1,20,"event5");
+			event6 := centre.createEvent(date5,date5,room3,exhibitor2,20,"event6");
+			
+				
+			assertEqual(6, card centre.getEvents());
+			
+			for all event in set centre.getEvents()
+				do assertEqual(event, centre.getEvent(event.getId()));
 					
-				centre.addParticipantToEvent(event1,visitor1);
-				centre.addParticipantsToEvent(event1, {visitor2,visitor3});
+			centre.addParticipantToEvent(event1,visitor1);
+			centre.addParticipantsToEvent(event1, {visitor2,visitor3});
 				
-				assertEqual(3, card centre.getEvent(event1.getId()).getParticipants());
-				assertEqual([20,60,60,0,3],centre.getEventStatistics(event1));
+			assertEqual(3, card centre.getEvent(event1.getId()).getParticipants());
+			assertEqual([20,60,60,0,3],centre.getEventStatistics(event1));
 				
-				centre.addParticipantToEvent(event2,visitor4);
-				centre.addParticipantToEvent(event2,visitor5);
+			centre.addParticipantToEvent(event2,visitor4);
+			centre.addParticipantToEvent(event2,visitor5);
 				
-				assertEqual(2, card centre.getEvent(event2.getId()).getParticipants());
-				assertEqual([20,40,40,0,2],centre.getEventStatistics(event2));
+			assertEqual(2, card centre.getEvent(event2.getId()).getParticipants());
+			assertEqual([20,40,40,0,2],centre.getEventStatistics(event2));
 				
-				centre.addParticipantToEvent(event3,visitor1);
-				centre.addParticipantsToEvent(event3, {visitor2,visitor3});
+			centre.addParticipantToEvent(event3,visitor1);
+			centre.addParticipantsToEvent(event3, {visitor2,visitor3});
 				
-				assertEqual(3, card centre.getEvent(event3.getId()).getParticipants());
-				assertEqual([20,20,60,40,3],centre.getEventStatistics(event3));
+			assertEqual(3, card centre.getEvent(event3.getId()).getParticipants());
+			assertEqual([20,20,60,40,3],centre.getEventStatistics(event3));
 				
-				centre.addParticipantToEvent(event4,visitor4);
-				centre.addParticipantToEvent(event4,visitor5);
+			centre.addParticipantToEvent(event4,visitor4);
+			centre.addParticipantToEvent(event4,visitor5);
 				
-				assertEqual(2, card centre.getEvent(event4.getId()).getParticipants());
-				assertEqual([20, 10749030, 40, -10748990, 2],centre.getEventStatistics(event4));
+			assertEqual(2, card centre.getEvent(event4.getId()).getParticipants());
+			assertEqual([20, 10749030, 40, -10748990, 2],centre.getEventStatistics(event4));
 				
-				centre.addParticipantToEvent(event5,visitor1);
-				centre.addParticipantsToEvent(event5, {visitor2,visitor3});
+			centre.addParticipantToEvent(event5,visitor1);
+			centre.addParticipantsToEvent(event5, {visitor2,visitor3});
 				
-				assertEqual(3, card centre.getEvent(event5.getId()).getParticipants());
-				assertEqual([20, 1180, 60, -1120, 3],centre.getEventStatistics(event5));
+			assertEqual(3, card centre.getEvent(event5.getId()).getParticipants());
+			assertEqual([20, 1180, 60, -1120, 3],centre.getEventStatistics(event5));
 				
-				centre.addParticipantToEvent(event6,visitor4);
-				centre.addParticipantToEvent(event6,visitor5);
+			centre.addParticipantToEvent(event6,visitor4);
+			centre.addParticipantToEvent(event6,visitor5);
 				
-				assertEqual(2, card centre.getEvent(event6.getId()).getParticipants());
-				assertEqual([20, 10, 40, 30, 2],centre.getEventStatistics(event6));
+			assertEqual(2, card centre.getEvent(event6.getId()).getParticipants());
+			assertEqual([20, 10, 40, 30, 2],centre.getEventStatistics(event6));
 				
-				assertEqual({event1,event3,event5},centre.getEventsFromVisitor(visitor1) 
-																						union centre.getEventsFromVisitor(visitor2) 
-																						union centre.getEventsFromVisitor(visitor3));
-				assertEqual({event2,event4,event6},centre.getEventsFromVisitor(visitor4) 
-																						union centre.getEventsFromVisitor(visitor5));
-				assertEqual({event1,event5}, centre.getEventsFromExhibitor(exhibitor1));
-				assertEqual({event2,event6}, centre.getEventsFromExhibitor(exhibitor2));
-				assertEqual({event3}, centre.getEventsFromExhibitor(exhibitor3));
-				assertEqual({}, centre.getEventsFromExhibitor(exhibitor5));
-				assertEqual(60,centre.totalMoneySpent(visitor1));
-				assertEqual(60,centre.totalMoneySpent(visitor2));
-				assertEqual(60,centre.totalMoneySpent(visitor3));
-				assertEqual(60,centre.totalMoneySpent(visitor4));
-				assertEqual(60,centre.totalMoneySpent(visitor5));				
-				assertEqual(-1120,centre.totalProfit(exhibitor1));
-				assertEqual(30,centre.totalProfit(exhibitor2));
-				assertEqual(40,centre.totalProfit(exhibitor3));
-				assertEqual(-10748990,centre.totalProfit(exhibitor4));
-				assertEqual(0,centre.totalProfit(exhibitor5));
+			assertEqual({event1,event3,event5},centre.getEventsFromVisitor(visitor1) 
+																					union centre.getEventsFromVisitor(visitor2) 
+																					union centre.getEventsFromVisitor(visitor3));
+			assertEqual({event2,event4,event6},centre.getEventsFromVisitor(visitor4) 
+																					union centre.getEventsFromVisitor(visitor5));
+			assertEqual({event1,event5}, centre.getEventsFromExhibitor(exhibitor1));
+			assertEqual({event2,event6}, centre.getEventsFromExhibitor(exhibitor2));
+			assertEqual({event3}, centre.getEventsFromExhibitor(exhibitor3));
+			assertEqual({}, centre.getEventsFromExhibitor(exhibitor5));
+			assertEqual(60,centre.totalMoneySpent(visitor1));
+			assertEqual(60,centre.totalMoneySpent(visitor2));
+			assertEqual(60,centre.totalMoneySpent(visitor3));
+			assertEqual(60,centre.totalMoneySpent(visitor4));
+			assertEqual(60,centre.totalMoneySpent(visitor5));				
+			assertEqual(-1120,centre.totalProfit(exhibitor1));
+			assertEqual(30,centre.totalProfit(exhibitor2));
+			assertEqual(40,centre.totalProfit(exhibitor3));
+			assertEqual(-10748990,centre.totalProfit(exhibitor4));
+			assertEqual(0,centre.totalProfit(exhibitor5));
 				
 				
-				centre.removeParticipantFromEvent(event1,visitor1);
-				assertEqual(2, card centre.getEvent(event1.getId()).getParticipants());
-				centre.removeParticipantsFromEvent(event3,{visitor1,visitor2});
-				assertEqual(1, card centre.getEvent(event3.getId()).getParticipants());
-				centre.removeParticipantsFromEvent(event5,{visitor1});
-				assertEqual(2, card centre.getEvent(event5.getId()).getParticipants());
+			centre.removeParticipantFromEvent(event1,visitor1);
+			assertEqual(2, card centre.getEvent(event1.getId()).getParticipants());
+			centre.removeParticipantsFromEvent(event3,{visitor1,visitor2});
+			assertEqual(1, card centre.getEvent(event3.getId()).getParticipants());
+			centre.removeParticipantsFromEvent(event5,{visitor1});
+			assertEqual(2, card centre.getEvent(event5.getId()).getParticipants());
 				
-				assertEqual({},centre.getEventsFromVisitor(visitor1));
-				assertEqual({event1,event5},centre.getEventsFromVisitor(visitor2));
-				assertEqual(0,centre.totalMoneySpent(visitor1));
-				assertEqual(40,centre.totalMoneySpent(visitor2));
+			assertEqual({},centre.getEventsFromVisitor(visitor1));
+			assertEqual({event1,event5},centre.getEventsFromVisitor(visitor2));
+			assertEqual(0,centre.totalMoneySpent(visitor1));
+			assertEqual(40,centre.totalMoneySpent(visitor2));
 				
-				assertEqual({},centre.getAvailableRooms(date1,date2));
-				assertEqual({},centre.getAvailableRooms(date1,date3));
-				assertEqual({},centre.getAvailableRooms(date1,date1));
-				assertEqual({room3},centre.getAvailableRooms(date3,date4));
-				assertEqual({},centre.getAvailableRooms(date4,date5));
-				assertEqual({room1},centre.getAvailableRooms(date5,date5));
+			assertEqual({},centre.getAvailableRooms(date1,date2));
+			assertEqual({},centre.getAvailableRooms(date1,date3));
+			assertEqual({},centre.getAvailableRooms(date1,date1));
+			assertEqual({room3},centre.getAvailableRooms(date3,date4));
+			assertEqual({},centre.getAvailableRooms(date4,date5));
+			assertEqual({room1},centre.getAvailableRooms(date5,date5));
 				
-				assertTrue(centre.overlapsEvents(date1,date2,room1.getId()));
-				assertTrue(centre.overlapsEvents(date1,date2,room2.getId()));
-				assertTrue(centre.overlapsEvents(date1,date2,room3.getId()));
-				assertTrue(centre.overlapsEvents(date3,date3,room1.getId()));
-				assertTrue(centre.overlapsEvents(date3,date4,room2.getId()));
-				assertTrue( not centre.overlapsEvents(date3,date4,room3.getId()));
-				assertTrue(centre.overlapsEvents(date4,date5,room1.getId()));
-				assertTrue(centre.overlapsEvents(date4,date5,room2.getId()));
-				assertTrue(centre.overlapsEvents(date4,date5,room3.getId()));
-				assertTrue(not centre.overlapsEvents(date5,date5,room1.getId()));
-				assertTrue(centre.overlapsEvents(date5,date5,room2.getId()));
-				assertTrue(centre.overlapsEvents(date5,date5,room3.getId()));
-				
-				centre.closeCompletedEvents();
-				assertEqual({event4,event5,event6},centre.getNotClosedEvents());
-				centre.forceCloseEvent(event5,"password");
-				assertEqual({event4,event6},centre.getNotClosedEvents());
-				assertEqual({room2},centre.getAvailableRooms(date4,date5));
-				assertTrue(centre.overlapsEvents(date4,date5,room1.getId()));
-				assertTrue(not centre.overlapsEvents(date4,date5,room2.getId()));
-				assertTrue(centre.overlapsEvents(date4,date5,room3.getId()));
-				
-				assertEqual({room1,room2,room3},centre.getAvailableRooms(date1,date2));
-				assertTrue(not centre.overlapsEvents(date1,date2,room1.getId()));
-				assertTrue(not centre.overlapsEvents(date1,date2,room2.getId()));
-				assertTrue(not centre.overlapsEvents(date1,date2,room3.getId()));
-				
-				centre.removeEvent(event6);
-				assertEqual(5, card centre.getEvents());
-				assertEqual({event4},centre.getNotClosedEvents());
-				assertEqual({room1,room2,room3},centre.getAvailableRooms(date5,date5));
-					
-				event6 := centre.createEvent(date5,date5,room3,exhibitor2,20,"event6");
-				centre.addParticipantToEvent(event6,visitor4);
-				centre.addParticipantToEvent(event6,visitor5);
-				event6 := centre.createEvent(date5,date5,room1,exhibitor2,20,"event6");
-				centre.addParticipantToEvent(event6,visitor4);
-				centre.addParticipantToEvent(event6,visitor5);
-				event6 := centre.createEvent(date5,date5,room2,exhibitor2,20,"event6");
-				centre.addParticipantToEvent(event6,visitor4);
-				centre.addParticipantToEvent(event6,visitor5);
-			);
+			assertTrue(centre.overlapsEvents(date1,date2,room1.getId()));
+			assertTrue(centre.overlapsEvents(date1,date2,room2.getId()));
+			assertTrue(centre.overlapsEvents(date1,date2,room3.getId()));
+			assertTrue(centre.overlapsEvents(date3,date3,room1.getId()));
+			assertTrue(centre.overlapsEvents(date3,date4,room2.getId()));
+			assertTrue( not centre.overlapsEvents(date3,date4,room3.getId()));
+			assertTrue(centre.overlapsEvents(date4,date5,room1.getId()));
+			assertTrue(centre.overlapsEvents(date4,date5,room2.getId()));
+			assertTrue(centre.overlapsEvents(date4,date5,room3.getId()));
+			assertTrue(not centre.overlapsEvents(date5,date5,room1.getId()));	
+			assertTrue(centre.overlapsEvents(date5,date5,room2.getId()));
+			assertTrue(centre.overlapsEvents(date5,date5,room3.getId()));
 			
-		public test: () ==> ()
+			centre.closeCompletedEvents();
+			assertEqual({event4,event5,event6},centre.getNotClosedEvents());
+			centre.forceCloseEvent(event5,"password");
+			assertEqual({event4,event6},centre.getNotClosedEvents());
+			assertEqual({room2},centre.getAvailableRooms(date4,date5));
+			assertTrue(centre.overlapsEvents(date4,date5,room1.getId()));
+			assertTrue(not centre.overlapsEvents(date4,date5,room2.getId()));	
+			assertTrue(centre.overlapsEvents(date4,date5,room3.getId()));
+				
+			assertEqual({room1,room2,room3},centre.getAvailableRooms(date1,date2));
+			assertTrue(not centre.overlapsEvents(date1,date2,room1.getId()));
+			assertTrue(not centre.overlapsEvents(date1,date2,room2.getId()));
+			assertTrue(not centre.overlapsEvents(date1,date2,room3.getId()));
+				
+			centre.removeEvent(event6);
+			assertEqual(5, card centre.getEvents());
+			assertEqual({event4},centre.getNotClosedEvents());
+			assertEqual({room1,room2,room3},centre.getAvailableRooms(date5,date5));
+					
+			event6 := centre.createEvent(date5,date5,room3,exhibitor2,20,"event6");
+			centre.addParticipantToEvent(event6,visitor4);
+			centre.addParticipantToEvent(event6,visitor5);
+			event6 := centre.createEvent(date5,date5,room1,exhibitor2,20,"event6");
+			centre.addParticipantToEvent(event6,visitor4);
+			centre.addParticipantToEvent(event6,visitor5);
+			event6 := centre.createEvent(date5,date5,room2,exhibitor2,20,"event6");
+			centre.addParticipantToEvent(event6,visitor4);
+			centre.addParticipantToEvent(event6,visitor5);
+		);
+			
+	private testpreGetEvent : () ==> ()
+		testpreGetEvent () == (
+			event2 := centre.getEvent(9999999999999999);
+		);
+		
+	private testpreGetRoom : () ==> ()
+		testpreGetRoom () == (
+			room3 := centre.getRoom(9999999999999999);
+		);
+		
+	private testpreGetVisitor : () ==> ()
+		testpreGetVisitor () == (
+			visitor5 := centre.getVisitor(9999999999999999);
+		);
+		
+	private testpreGetExhibitor : () ==> ()
+		testpreGetExhibitor () == (
+			exhibitor5 := centre.getExhibitor(9999999999999999);
+		);
+
+	private testpreRemoveEvent : () ==> ()
+		testpreRemoveEvent () == (
+			centre.removeEvent(event1);
+		);
+		
+	private testpreGetAvailableRooms : () ==> ()
+		testpreGetAvailableRooms () == (
+			assertTrue(room1 in set centre.getAvailableRooms(new Date(2019,1,2),new Date(2019,1,1)));
+		);
+		
+	private testpreOverlapsEvents : () ==> ()
+		testpreOverlapsEvents () == (
+			assertTrue(not centre.overlapsEvents(new Date(2019,1,2),new Date(2019,1,2),999999999999));
+		);
+		
+	private testpreCreateEvent : () ==> ()
+		testpreCreateEvent () == (
+			event6 := centre.createEvent(date5,date5,room3,exhibitor5,20,"event6");
+			event6 := centre.createEvent(date5,date5,room3,exhibitor5,20,"event6");
+		);
+			
+	public test: () ==> ()
 		test() == (
 			IO`println("\tExhibition Centre Tests");
-			testRooms();
-			testEvents();
-			testEntities();
+				testRooms();
+				testEvents();
+				testEntities();
 			IO`println("\tTestes do Centro de Exposições terminados com sucesso!");
 			
 			--test Pre and Post conditions, leave the function calls commented
-
+			--testpreGetEvent();
+			--testpreGetRoom();
+			--testpreGetVisitor();
+			--testpreGetExhibitor();
+			--testpreRemoveEvent();
+			--testpreCreateEvent();
+			--testpreGetAvailableRooms();
+			--testpreOverlapsEvents();
 		);
+		
 end TestExhibitionCentre

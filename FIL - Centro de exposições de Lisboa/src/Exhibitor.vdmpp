@@ -1,16 +1,17 @@
 class Exhibitor is subclass of Entity
-	instance variables
-		private static nextId : nat1 := 1;
+
+instance variables
+	private static nextId : nat1 := 1;
 	
-	operations
+operations
 		--Constructor
-		public Exhibitor : seq1 of char ==> Exhibitor
-			Exhibitor(n) == (
-				id := nextId;
-				nextId := nextId + 1;
-				name := n;
-				return self;
-			)
+	public Exhibitor : seq1 of char ==> Exhibitor
+		Exhibitor(n) == (
+			id := nextId;
+			nextId := nextId + 1;
+			name := n;
+			return self;
+		)
 		post nextId>id;
 		
 end Exhibitor

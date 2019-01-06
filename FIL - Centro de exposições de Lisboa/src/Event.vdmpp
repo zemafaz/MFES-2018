@@ -1,7 +1,7 @@
 class Event
 
 values
-forceClosePassWord: seq1 of char = "password";
+	forceClosePassWord: seq1 of char = "password";
 
 instance variables
 	public static nextId : nat1 := 1;
@@ -24,14 +24,14 @@ operations
 
 	public Event : Schedule * Exhibitor * nat1 * seq1 of char ==> Event
 		Event (sch, exhi, price, n) == (
-		schedule:=sch;
-		exhibitor:=exhi;
-		pricePerParticipant:=price;
-		closed := false;
-		participants := {};
-		id_event := nextId;
-		nextId := nextId + 1;
-		name :=n;
+			schedule:=sch;
+			exhibitor:=exhi;
+			pricePerParticipant:=price;
+			closed := false;
+			participants := {};
+			id_event := nextId;
+			nextId := nextId + 1;
+			name :=n;
 		)
 		post nextId>id_event;
 		
@@ -104,8 +104,7 @@ operations
 		post participant in set participants;
 		
 	public removeParticipant : Visitor ==> ()
-		removeParticipant(participant)==
-		(
+		removeParticipant(participant) == (
 			participants := participants \ {participant};
 		)
 		pre participant  in set participants and not closed

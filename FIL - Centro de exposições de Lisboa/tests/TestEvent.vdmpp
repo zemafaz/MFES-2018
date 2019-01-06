@@ -1,32 +1,30 @@
 class TestEvent is subclass of MyTestCase
 
 instance variables
-room1 : Room := new Room(10,100);
-room2 : Room := new Room(10,100);
-room3 : Room := new Room(6,100);
-date1 : Date := new Date(2019,1,1);
-date2 : Date := new Date(2019,1,4);
-date3 : Date := new Date(2019,1,2);
-date4 : Date := new Date(2019,1,3);
-schedule1 : Schedule := new Schedule(room1,date1,date2);
-schedule2 : Schedule := new Schedule(room2,date1,date1);
-schedule3 : Schedule := new Schedule(room3,date3,date3);
-visitor1 : Visitor := new Visitor("João");
-visitor2 : Visitor := new Visitor("José");
-visitor3 : Visitor := new Visitor("Maria");
-exhibitor1 : Exhibitor := new Exhibitor("Paulo");
-exhibitor2 : Exhibitor := new Exhibitor("Ana");
-exhibitor3 : Exhibitor := new Exhibitor("Sofia");
-visitor4 : Visitor := new Visitor("João");
-visitor5 : Visitor := new Visitor("José");
-visitor6 : Visitor := new Visitor("Maria");
-visitor7 : Visitor := new Visitor("Maria");
-
-
-event1 : Event := new Event(schedule1, exhibitor1, 20,"evento1");
-event2 : Event := new Event(schedule2, exhibitor2, 20,"evento2");
-event3 : Event := new Event(schedule3, exhibitor3, 20,"evento3");
-event4 : Event := new Event(schedule3, exhibitor3, 20,"evento4");
+	private room1 : Room := new Room(10,100);
+	private room2 : Room := new Room(10,100);
+	private room3 : Room := new Room(6,100);
+	private date1 : Date := new Date(2019,1,1);
+	private date2 : Date := new Date(2019,1,4);
+	private date3 : Date := new Date(2019,1,2);
+	private date4 : Date := new Date(2019,1,3);
+	private schedule1 : Schedule := new Schedule(room1,date1,date2);
+	private schedule2 : Schedule := new Schedule(room2,date1,date1);
+	private schedule3 : Schedule := new Schedule(room3,date3,date3);
+	private visitor1 : Visitor := new Visitor("João");
+	private visitor2 : Visitor := new Visitor("José");
+	private visitor3 : Visitor := new Visitor("Maria");
+	private exhibitor1 : Exhibitor := new Exhibitor("Paulo");
+	private exhibitor2 : Exhibitor := new Exhibitor("Ana");
+	private exhibitor3 : Exhibitor := new Exhibitor("Sofia");
+	private visitor4 : Visitor := new Visitor("João");
+	private visitor5 : Visitor := new Visitor("José");
+	private visitor6 : Visitor := new Visitor("Maria");
+	private visitor7 : Visitor := new Visitor("Maria");
+	private event1 : Event := new Event(schedule1, exhibitor1, 20,"evento1");
+	private event2 : Event := new Event(schedule2, exhibitor2, 20,"evento2");
+	private event3 : Event := new Event(schedule3, exhibitor3, 20,"evento3");
+	private event4 : Event := new Event(schedule3, exhibitor3, 20,"evento4");
 
 operations
 
@@ -41,7 +39,7 @@ operations
 			assertTrue(event3.isClosed());
 		);
 		
-		private testGets: () ==> ()
+	private testGets: () ==> ()
 		testGets() == (
 			assertEqual(20,event1.getPricePerParticipant());
 			assertEqual(true,event1.isClosed());

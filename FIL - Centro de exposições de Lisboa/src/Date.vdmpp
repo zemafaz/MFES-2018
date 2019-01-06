@@ -51,7 +51,7 @@ operations
 			else return false
 		);
 		
-		public pure compareDate : nat1 * nat1 * nat1 ==> bool
+	public pure compareDate : nat1 * nat1 * nat1 ==> bool
 		compareDate(y,m,d) == 
 		(
 			if(y<year)

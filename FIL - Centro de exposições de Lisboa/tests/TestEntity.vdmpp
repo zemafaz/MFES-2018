@@ -1,15 +1,14 @@
 class TestEntity is subclass of MyTestCase
 
 instance variables
-	visitor1 : Visitor := new Visitor("João");
-	visitor2 : Visitor := new Visitor("José");
-	visitor3 : Visitor := new Visitor("Maria");
-	exhibitor1 : Exhibitor := new Exhibitor("Paulo");
-	exhibitor2 : Exhibitor := new Exhibitor("Ana");
-	exhibitor3 : Exhibitor := new Exhibitor("Sofia");
+	private visitor1 : Visitor := new Visitor("João");
+	private visitor2 : Visitor := new Visitor("José");
+	private visitor3 : Visitor := new Visitor("Maria");
+	private exhibitor1 : Exhibitor := new Exhibitor("Paulo");
+	private exhibitor2 : Exhibitor := new Exhibitor("Ana");
+	private exhibitor3 : Exhibitor := new Exhibitor("Sofia");
 
 operations
-	
 	
 	private testGets: () ==> ()
 		testGets() == (

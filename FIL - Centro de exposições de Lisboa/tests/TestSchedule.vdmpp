@@ -1,20 +1,18 @@
 class TestSchedule is subclass of MyTestCase
 
 instance variables
-room1 : Room := new Room(10,100);
-room2 : Room := new Room(10,100);
-room3 : Room := new Room(10,100);
-date1 : Date := new Date(2019,1,1);
-date2 : Date := new Date(2019,1,1);
-date3 : Date := new Date(2019,1,2);
-date4 : Date := new Date(2019,1,3);
-schedule1 : Schedule := new Schedule(room1,date1,date2);
-schedule2 : Schedule := new Schedule(room2,date1,date1);
-schedule3 : Schedule := new Schedule(room3,date3,date3);
+	private room1 : Room := new Room(10,100);
+	private room2 : Room := new Room(10,100);
+	private room3 : Room := new Room(10,100);
+	private date1 : Date := new Date(2019,1,1);
+	private date2 : Date := new Date(2019,1,1);
+	private date3 : Date := new Date(2019,1,2);
+	private date4 : Date := new Date(2019,1,3);
+	private schedule1 : Schedule := new Schedule(room1,date1,date2);
+	private schedule2 : Schedule := new Schedule(room2,date1,date1);
+	private schedule3 : Schedule := new Schedule(room3,date3,date3);
 
 operations
--- TODO Define operations here
-
 	--Checks if Room Objects are being created correctly and returning the correct values
 	private testGets: () ==> ()
 		testGets() == (

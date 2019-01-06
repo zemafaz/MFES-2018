@@ -8,14 +8,12 @@ private pricePerDay: nat1;
 operations
 	-- Constructor
 	public Room : nat1 * nat1 ==> Room
-		Room(s,ppd) == 
-		(
+		Room(s,ppd) == (
 			space := s;
 			pricePerDay := ppd;
 			id_room := nextId;
 			nextId := nextId + 1;
-			
-			return self
+			return self;
 		)
 		post nextId>id_room;
 		

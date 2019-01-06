@@ -8,6 +8,7 @@
 
 class TestMain
 operations
+
  public static main: () ==> ()
  	main() ==
  	(
@@ -22,5 +23,4 @@ operations
   	IO`println("Testes terminados com sucesso!");
  	);
 	
-
 end TestMain

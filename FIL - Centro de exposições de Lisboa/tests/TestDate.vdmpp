@@ -1,14 +1,14 @@
 class TestDate is subclass of MyTestCase
 
 instance variables
-date1: Date := new Date(2019,1,31);
-date2: Date := new Date(2019,2,28);
-date3: Date := new Date(2020,2,29);
-date4: Date := new Date(2019,4,1);
-date5: Date := new Date(2019,1,1);
-date6: Date := new Date(2019,1,31);
-date7: Date:= new Date(2019,3,1);
-date8: Date:= new Date(2020,3,1);
+	private date1: Date := new Date(2019,1,31);
+	private date2: Date := new Date(2019,2,28);
+	private date3: Date := new Date(2020,2,29);
+	private date4: Date := new Date(2019,4,1);
+	private date5: Date := new Date(2019,1,1);
+	private date6: Date := new Date(2019,1,31);
+	private date7: Date:= new Date(2019,3,1);
+	private date8: Date:= new Date(2020,3,1);
 
 operations
 -- TODO Define operations here

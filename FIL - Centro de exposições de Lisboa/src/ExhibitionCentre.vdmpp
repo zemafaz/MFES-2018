@@ -98,18 +98,23 @@ class ExhibitionCentre
 		removeVisitor(visitor) == (
 			visitors := visitors \ {visitor};
 			for all event in set events do 
-				if event.has_participant(visitor) and not event.has_started() and not event.isClosed()
+				if event.has_participant(visitor) 
+					and not event.has_started() 
+					and not event.isClosed()
 					then event.removeParticipant(visitor);
 		)
 		pre visitor in set visitors
 		post visitor not in set visitors 
-			and not exists event in set events & event.has_participant(visitor) and not event.isClosed() and not event.has_started();
+			and not exists event in set events & event.has_participant(visitor) 
+				and not event.isClosed() and not event.has_started();
 		
 	public removeExhibitor: Exhibitor ==> ()
 		removeExhibitor(exhibitor) == (
 			exhibitors := exhibitors \ {exhibitor};
 			for all event in set events do 
-				if not event.isClosed() and event.getExhibitor()=exhibitor and not event.has_started()
+				if not event.isClosed() 
+					and event.getExhibitor()=exhibitor 
+					and not event.has_started()
 					then removeEvent(event);
 		)
 		pre exhibitor in set exhibitors
@@ -134,8 +139,10 @@ class ExhibitionCentre
 		)
 		pre exhibitor in set exhibitors 
 			and room in set rooms 
-			and forall event in set events & not event.overlaps(initialDate, finalDate, room.getId()) or event.isClosed()
-		post exists1 event in set events & event.overlaps(initialDate, finalDate, room.getId()) and not event.isClosed();
+			and forall event in set events & 
+				not event.overlaps(initialDate, finalDate, room.getId()) or event.isClosed()
+		post exists1 event in set events & event.overlaps(initialDate, finalDate, room.getId()) 
+			and not event.isClosed();
 		
 	public closeCompletedEvents : () ==> ()
 		closeCompletedEvents() == (
@@ -145,7 +152,8 @@ class ExhibitionCentre
 					then event.closeEvent(currentDate);
 				);
 		)
-		post not exists event in set events & event.has_ended() and not event.isClosed();
+		post not exists event in set events & event.has_ended() 
+			and not event.isClosed();
 			
 	public forceCloseEvent : Event*seq1 of char ==> ()
 		forceCloseEvent(event,password) == (
@@ -200,15 +208,19 @@ class ExhibitionCentre
 	public pure getAvailableRooms: Date*Date ==> set of Room
 		getAvailableRooms(iDate, fDate) == (
 			return {room | room in set rooms 
-				& forall event in set events & not event.overlaps(iDate, fDate, room.getId()) or event.isClosed()};
+				& forall event in set events & 
+					not event.overlaps(iDate, fDate, room.getId()) or event.isClosed()};
 		)
-		pre fDate.compareDate(iDate) or ((fDate.compareDate(iDate) or fDate.compareDate(iDate)) = false);
+		pre fDate.compareDate(iDate) 
+			or ((fDate.compareDate(iDate) or fDate.compareDate(iDate)) = false);
 		
 	public pure overlapsEvents: Date*Date*nat1 ==> bool
 		overlapsEvents(iDate,fDate,idRoom) == (
 			return exists event in set events & event.overlaps(iDate, fDate, idRoom) and not event.isClosed()
 		)
-		pre fDate.compareDate(iDate) or ((fDate.compareDate(iDate) or fDate.compareDate(iDate)) = false);
+		pre fDate.compareDate(iDate) 
+			or ((fDate.compareDate(iDate) or fDate.compareDate(iDate)) = false)
+			and exists1 x in set rooms & x.getId()=idRoom;
 		
 	public pure getEventsFromVisitor : Visitor ==> set of Event
 		getEventsFromVisitor(visitor) == (

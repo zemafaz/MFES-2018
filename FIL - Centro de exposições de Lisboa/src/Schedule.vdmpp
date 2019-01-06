@@ -1,4 +1,5 @@
 class Schedule
+
 instance variables
   private room:Room;
   private initialDate:Date;
@@ -12,8 +13,7 @@ instance variables
 operations
 	--Constructor
 	public Schedule : Room*Date*Date ==> Schedule
-		Schedule(r, iDate, fDate) == 
-		(
+		Schedule(r, iDate, fDate) == (
 			room := r;
 			initialDate := iDate;
 			finalDate := fDate;
@@ -55,6 +55,6 @@ operations
 				then return false
 			else return true
 		)
-	pre (fDate.compareDate(iDate) or ((fDate.compareDate(iDate) or iDate.compareDate(fDate)) = false)) and Room`roomExists(idRoom);  -- that initial date needs to be <= to the final date	
+		pre (fDate.compareDate(iDate) or ((fDate.compareDate(iDate) or iDate.compareDate(fDate)) = false)) and Room`roomExists(idRoom);  -- that initial date needs to be <= to the final date	
 	
 end Schedule
