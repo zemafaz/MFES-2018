@@ -127,7 +127,7 @@ public class Event {
   public String toString() {
 
     return "Event ID: " + Utils.toString(id_event) +
-    		"\n\t Schedule: " + schedule.toString() + 
+    		"\n\t Schedule: \n" + schedule.toString() + 
     		"\t Name: " + name + 
     		"\n\t Exhibitor: " + exhibitor.toString()+
     		"\t Price To Participate: " + Utils.toString(pricePerParticipant) +"\n";
@@ -139,7 +139,7 @@ public class Event {
 			  "\n\t Cost for the Exhibitor: "+ Utils.toString(getCostOfEvent())+
 			  "\n\t Total Sales: " + Utils.toString(getSalesValueOfEvent()) + 
 			  "\n\t Profit for the exhibitor: " + Utils.toString(profit()) + 
-			  "\n\tParticipants:\n";
+			  "\n\n\tParticipants:\n";
 	  for (Iterator iterator_24 = participants.iterator(); iterator_24.hasNext(); ) {
 	        Visitor x = (Visitor) iterator_24.next();
 	        stringtoreturn+="\t"+x.toString();
