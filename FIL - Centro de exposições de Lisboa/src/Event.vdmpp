@@ -47,12 +47,12 @@ operations
 	
 	public pure has_started : () ==> bool
 		has_started() == (
-			return not schedule.getInitialDate().compareDate(new Date(CurrentTime`getYear(), CurrentTime`getMonth(), CurrentTime`getDay()));
+			return not schedule.getInitialDate().compareDate(CurrentTime`getYear(), CurrentTime`getMonth(), CurrentTime`getDay());
 		);
 		
 	public pure has_ended : () ==> bool
 		has_ended() == (
-			return not schedule.getFinalDate().compareDate(new Date(CurrentTime`getYear(), CurrentTime`getMonth(), CurrentTime`getDay()));
+			return not schedule.getFinalDate().compareDate(CurrentTime`getYear(), CurrentTime`getMonth(), CurrentTime`getDay());
 		);
 		
 	public pure getId : () ==> nat1

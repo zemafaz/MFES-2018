@@ -35,7 +35,7 @@ operations
 		
 	-- Compares two dates for example date1 and date2
 	-- If the date1 is "bigger" than the date 2, returns true otherwise, false 
-	pure public compareDate : Date ==> bool
+	public pure compareDate : Date ==> bool
 		compareDate(d) == 
 		(
 			if(d.getYear()<year)
@@ -47,6 +47,22 @@ operations
 			else if(d.getMonth()>month)
 				then return false
 			else if (d.getDay()<day)
+				then return true
+			else return false
+		);
+		
+		public pure compareDate : nat1 * nat1 * nat1 ==> bool
+		compareDate(y,m,d) == 
+		(
+			if(y<year)
+				then return true
+			else if(y>year)
+				then return false
+			else if(m<month)
+				then return true
+			else if(m>month)
+				then return false
+			else if (d<day)
 				then return true
 			else return false
 		);
