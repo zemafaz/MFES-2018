@@ -42,62 +42,62 @@ public class TestExhibitionCentre extends MyTestCase {
     assertEqual(exhibitor1, centre.getExhibitor(exhibitor1.getId()));
     assertEqual(exhibitor3, centre.getExhibitor(exhibitor3.getId()));
     centre.removeVisitor(visitor4);
-    VDMSet setCompResult_1 = SetUtil.set();
-    VDMSet set_1 = centre.getEvents();
-    for (Iterator iterator_1 = set_1.iterator(); iterator_1.hasNext(); ) {
-      Event event = ((Event) iterator_1.next());
-      if (event.has_participant(visitor4)) {
-        setCompResult_1.add(event);
-      }
-    }
-    assertEqual(SetUtil.set(event2, event4), Utils.copy(setCompResult_1));
-
-    centre.removeVisitor(visitor2);
-    VDMSet setCompResult_2 = SetUtil.set();
-    VDMSet set_2 = centre.getEvents();
-    for (Iterator iterator_2 = set_2.iterator(); iterator_2.hasNext(); ) {
-      Event event = ((Event) iterator_2.next());
-      if (event.has_participant(visitor2)) {
-        setCompResult_2.add(event);
-      }
-    }
-    assertEqual(SetUtil.set(event1), Utils.copy(setCompResult_2));
-
-    assertEqual(SetUtil.set(event1, event5), centre.getEventsFromExhibitor(exhibitor1));
-    centre.removeExhibitor(exhibitor1);
-    VDMSet setCompResult_3 = SetUtil.set();
-    VDMSet set_3 = centre.getEvents();
-    for (Iterator iterator_3 = set_3.iterator(); iterator_3.hasNext(); ) {
-      Event event = ((Event) iterator_3.next());
-      if (Utils.equals(event.getExhibitor(), exhibitor1)) {
-        setCompResult_3.add(event);
-      }
-    }
-    assertEqual(SetUtil.set(event1, event5), Utils.copy(setCompResult_3));
-
-    assertEqual(4L, centre.getEventsFromExhibitor(exhibitor2).size());
-    centre.removeExhibitor(exhibitor2);
-    VDMSet setCompResult_4 = SetUtil.set();
-    VDMSet set_4 = centre.getEvents();
-    for (Iterator iterator_4 = set_4.iterator(); iterator_4.hasNext(); ) {
-      Event event = ((Event) iterator_4.next());
-      if (Utils.equals(event.getExhibitor(), exhibitor2)) {
-        setCompResult_4.add(event);
-      }
-    }
-    assertEqual(1L, setCompResult_4.size());
-
-    assertEqual(SetUtil.set(event4), centre.getEventsFromExhibitor(exhibitor4));
-    centre.removeExhibitor(exhibitor4);
     VDMSet setCompResult_5 = SetUtil.set();
-    VDMSet set_5 = centre.getEvents();
-    for (Iterator iterator_5 = set_5.iterator(); iterator_5.hasNext(); ) {
-      Event event = ((Event) iterator_5.next());
-      if (Utils.equals(event.getExhibitor(), exhibitor4)) {
+    VDMSet set_19 = centre.getEvents();
+    for (Iterator iterator_19 = set_19.iterator(); iterator_19.hasNext(); ) {
+      Event event = ((Event) iterator_19.next());
+      if (event.has_participant(visitor4)) {
         setCompResult_5.add(event);
       }
     }
-    assertEqual(SetUtil.set(event4), Utils.copy(setCompResult_5));
+    assertEqual(SetUtil.set(event2, event4), Utils.copy(setCompResult_5));
+
+    centre.removeVisitor(visitor2);
+    VDMSet setCompResult_6 = SetUtil.set();
+    VDMSet set_20 = centre.getEvents();
+    for (Iterator iterator_20 = set_20.iterator(); iterator_20.hasNext(); ) {
+      Event event = ((Event) iterator_20.next());
+      if (event.has_participant(visitor2)) {
+        setCompResult_6.add(event);
+      }
+    }
+    assertEqual(SetUtil.set(event1), Utils.copy(setCompResult_6));
+
+    assertEqual(SetUtil.set(event1, event5), centre.getEventsFromExhibitor(exhibitor1));
+    centre.removeExhibitor(exhibitor1);
+    VDMSet setCompResult_7 = SetUtil.set();
+    VDMSet set_21 = centre.getEvents();
+    for (Iterator iterator_21 = set_21.iterator(); iterator_21.hasNext(); ) {
+      Event event = ((Event) iterator_21.next());
+      if (Utils.equals(event.getExhibitor(), exhibitor1)) {
+        setCompResult_7.add(event);
+      }
+    }
+    assertEqual(SetUtil.set(event1, event5), Utils.copy(setCompResult_7));
+
+    assertEqual(4L, centre.getEventsFromExhibitor(exhibitor2).size());
+    centre.removeExhibitor(exhibitor2);
+    VDMSet setCompResult_8 = SetUtil.set();
+    VDMSet set_22 = centre.getEvents();
+    for (Iterator iterator_22 = set_22.iterator(); iterator_22.hasNext(); ) {
+      Event event = ((Event) iterator_22.next());
+      if (Utils.equals(event.getExhibitor(), exhibitor2)) {
+        setCompResult_8.add(event);
+      }
+    }
+    assertEqual(1L, setCompResult_8.size());
+
+    assertEqual(SetUtil.set(event4), centre.getEventsFromExhibitor(exhibitor4));
+    centre.removeExhibitor(exhibitor4);
+    VDMSet setCompResult_9 = SetUtil.set();
+    VDMSet set_23 = centre.getEvents();
+    for (Iterator iterator_23 = set_23.iterator(); iterator_23.hasNext(); ) {
+      Event event = ((Event) iterator_23.next());
+      if (Utils.equals(event.getExhibitor(), exhibitor4)) {
+        setCompResult_9.add(event);
+      }
+    }
+    assertEqual(SetUtil.set(event4), Utils.copy(setCompResult_9));
 
     return;
   }
@@ -105,12 +105,12 @@ public class TestExhibitionCentre extends MyTestCase {
   private void testRooms() {
 
     assertEqual(3L, centre.getRooms().size());
-    for (Iterator iterator_6 = centre.getRooms().iterator(); iterator_6.hasNext(); ) {
-      Room room = (Room) iterator_6.next();
+    for (Iterator iterator_35 = centre.getRooms().iterator(); iterator_35.hasNext(); ) {
+      Room room = (Room) iterator_35.next();
       assertEqual(room, centre.getRoom(room.getId()));
     }
-    for (Iterator iterator_7 = centre.getRooms().iterator(); iterator_7.hasNext(); ) {
-      Room room = (Room) iterator_7.next();
+    for (Iterator iterator_36 = centre.getRooms().iterator(); iterator_36.hasNext(); ) {
+      Room room = (Room) iterator_36.next();
       centre.removeRoom(room);
     }
     assertEqual(0L, centre.getRooms().size());
@@ -130,8 +130,8 @@ public class TestExhibitionCentre extends MyTestCase {
     event5 = centre.createEvent(date4, date5, room2, exhibitor1, 20L, "event5");
     event6 = centre.createEvent(date5, date5, room3, exhibitor2, 20L, "event6");
     assertEqual(6L, centre.getEvents().size());
-    for (Iterator iterator_8 = centre.getEvents().iterator(); iterator_8.hasNext(); ) {
-      Event event = (Event) iterator_8.next();
+    for (Iterator iterator_37 = centre.getEvents().iterator(); iterator_37.hasNext(); ) {
+      Event event = (Event) iterator_37.next();
       assertEqual(event, centre.getEvent(event.getId()));
     }
     centre.addParticipantToEvent(event1, visitor1);
@@ -211,7 +211,8 @@ public class TestExhibitionCentre extends MyTestCase {
     assertTrue(!(centre.overlapsEvents(date5, date5, room1.getId())));
     assertTrue(centre.overlapsEvents(date5, date5, room2.getId()));
     assertTrue(centre.overlapsEvents(date5, date5, room3.getId()));
-    ExhibitionCentre.getInstance().start();
+   
+    /*ExhibitionCentre.getInstance().start();
     Boolean whileCond_1 = true;
     while (whileCond_1) {
       whileCond_1 =
@@ -221,7 +222,8 @@ public class TestExhibitionCentre extends MyTestCase {
       }
 
       IO.println("\t\tTesting thread");
-    }
+    }*/
+    centre.closeCompletedEvents();
 
     assertEqual(SetUtil.set(event4, event5, event6), centre.getNotClosedEvents());
     centre.forceCloseEvent(event5, "password");
