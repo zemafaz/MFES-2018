@@ -1,3 +1,9 @@
+/*
+
+  Abstract Class that represents an entity;
+  An Entity has a id and a name. 
+
+*/
 class Entity
 
 instance variables

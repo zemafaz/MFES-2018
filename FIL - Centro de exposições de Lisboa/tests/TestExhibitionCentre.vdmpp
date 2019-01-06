@@ -32,6 +32,7 @@ instance variables
 		
 operations
 	
+	--Tests the Entity flow for Exhibition Centre
 	private testEntities: () ==> ()
 		testEntities() == (
 			assertEqual({visitor1,visitor2,visitor3,visitor4,visitor5},centre.getVisitors());
@@ -60,7 +61,8 @@ operations
 			assertEqual({event4}, {event | event in set centre.getEvents() & event.getExhibitor() = exhibitor4});	
 			return;
 		);
-			
+	
+	--Tests the Room flow for Exhibition Centre		
 	private testRooms: () ==> ()
 		testRooms() == (	
 			assertEqual(3, card centre.getRooms());
@@ -79,7 +81,8 @@ operations
 			
 			assertEqual(3, card centre.getRooms());	
 		);
-			
+	
+	--Tests the Event flow for Exhibition Centre		
 	private testEvents: () ==> ()
 		testEvents() == (
 			assertEqual(3, card centre.getRooms());	
@@ -214,42 +217,50 @@ operations
 			centre.addParticipantToEvent(event6,visitor4);
 			centre.addParticipantToEvent(event6,visitor5);
 		);
-			
+	
+	--The Event needs to be on the set		
 	private testpreGetEvent : () ==> ()
 		testpreGetEvent () == (
 			event2 := centre.getEvent(9999999999999999);
 		);
-		
+	
+	--The Room needs to be on the set	
 	private testpreGetRoom : () ==> ()
 		testpreGetRoom () == (
 			room3 := centre.getRoom(9999999999999999);
 		);
 		
+	--The visitor need to be on the set	
 	private testpreGetVisitor : () ==> ()
 		testpreGetVisitor () == (
 			visitor5 := centre.getVisitor(9999999999999999);
 		);
-		
+	
+	--The exhibitor needs to be on the set	
 	private testpreGetExhibitor : () ==> ()
 		testpreGetExhibitor () == (
 			exhibitor5 := centre.getExhibitor(9999999999999999);
 		);
-
+	
+	--It's not possible to remove closed events
 	private testpreRemoveEvent : () ==> ()
 		testpreRemoveEvent () == (
 			centre.removeEvent(event1);
 		);
 		
+	--Final date need to be bigger or equal than the initial date	
 	private testpreGetAvailableRooms : () ==> ()
 		testpreGetAvailableRooms () == (
 			assertTrue(room1 in set centre.getAvailableRooms(new Date(2019,1,2),new Date(2019,1,1)));
 		);
-		
+	
+	--The room needs to exist on the set
 	private testpreOverlapsEvents : () ==> ()
 		testpreOverlapsEvents () == (
 			assertTrue(not centre.overlapsEvents(new Date(2019,1,2),new Date(2019,1,2),999999999999));
 		);
-		
+	
+	--It's not possible to have 2 or more events that overlap eachother	
 	private testpreCreateEvent : () ==> ()
 		testpreCreateEvent () == (
 			event6 := centre.createEvent(date5,date5,room3,exhibitor5,20,"event6");

@@ -11,7 +11,6 @@ instance variables
 	private date8: Date:= new Date(2020,3,1);
 
 operations
--- TODO Define operations here
 
 	--Checks if Date Objects are being created correctly and returning the correct values for the year month and day
 	private testGets: () ==> ()
@@ -43,7 +42,8 @@ operations
 			assertTrue(not date1.compareDate(date6));
 			assertTrue(not date6.compareDate(date1));
 		);
-		
+	
+	--Test the conversion of a date to days	
 	private testGDate: () ==> ()
 		testGDate() == (
 			assertEqual(737395,date1.gdate_algorithm());
@@ -55,8 +55,8 @@ operations
 			assertEqual(737424,date7.gdate_algorithm());
 			assertEqual(737790,date8.gdate_algorithm());
 		);
-		
-		private testDaysElapsed: () ==> ()
+	-- Tests the number of days between two days	
+	private testDaysElapsed: () ==> ()
 		testDaysElapsed() == (
 			assertEqual(29,Date`daysElapsed(date1,date2));
 			assertEqual(1,Date`daysElapsed(date1,date6));

@@ -9,7 +9,7 @@ instance variables
 	private exhibitor3 : Exhibitor := new Exhibitor("Sofia");
 
 operations
-	
+	--Checks if Entity Objects are being created correctly and returning the correct values 
 	private testGets: () ==> ()
 		testGets() == (
 			assertEqual(1,visitor1.getId());
@@ -25,7 +25,8 @@ operations
 			assertEqual("Ana",exhibitor2.getName());
 			assertEqual("Sofia",exhibitor3.getName());
 		);
-		
+	
+	-- A name can't have more than 50 characters	
 	private testNameTooBig: () ==> ()
 		testNameTooBig() == (
 		(dcl NameTooBig : Exhibitor :=new Exhibitor("O meu nome tem mais de cinquenta caracteres por isso dá erro");

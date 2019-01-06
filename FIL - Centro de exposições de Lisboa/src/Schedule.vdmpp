@@ -1,3 +1,9 @@
+/*
+
+  Class that represents a Reservation of a room between 2 dates;
+
+*/
+
 class Schedule
 
 instance variables
@@ -44,7 +50,8 @@ operations
 	public pure getNumberOfDays : () ==>nat1
 		getNumberOfDays() == (return Date`daysElapsed(initialDate,finalDate));
 		
-	-- checks if 2 given dates overlap this schedule/reservation
+	--checks if 2 given dates overlap this schedule/reservation
+	--returns true if overlaps this reservation, false otherwise
 	public pure overlaps : Date * Date * nat1 ==> bool
 		overlaps(iDate, fDate, idRoom) == (
 			if idRoom<>room.getId()

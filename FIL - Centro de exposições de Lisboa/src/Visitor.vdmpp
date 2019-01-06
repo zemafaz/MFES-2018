@@ -1,3 +1,10 @@
+/*
+
+  Class that represents a Visitor/User;
+  An Visitor is a subclass of an entity 
+  with only a constructor and a unique set of id's independent of other entity subclasses
+
+*/
 class Visitor is subclass of Entity
 
 instance variables

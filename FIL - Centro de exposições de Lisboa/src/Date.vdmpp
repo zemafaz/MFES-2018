@@ -1,3 +1,9 @@
+/*
+
+  Class that represents a date;
+  A date has a year, month, and day. 
+
+*/
 class Date
 
 instance variables

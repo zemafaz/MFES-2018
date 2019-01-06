@@ -1,3 +1,11 @@
+/*
+
+  Class that represents The Exhibition Centre
+  It follows the singleton pattern
+	An exhibition Centre has a set of Events, Rooms, Registered Visitors and Exhibitors
+	This Class controls all the flow related to the previous mentioned class sets, since it is designed to function more like an API
+*/
+
 class ExhibitionCentre
  instance variables
 	private static centre : ExhibitionCentre := new ExhibitionCentre();
@@ -15,7 +23,7 @@ class ExhibitionCentre
   inv not exists e2, e3 in set exhibitors & e2 <> e3 and e2.getId() = e3.getId();
   
  operations
-  	--Constructor
+  -- PRIVATE Constructor
   private ExhibitionCentre : () ==> ExhibitionCentre
   	ExhibitionCentre() == (
   		events := {};
@@ -24,58 +32,74 @@ class ExhibitionCentre
   		exhibitors := {};
   		return self;
   	);
-  	
+  
+  --Returns the unique and only Exhibition Centre	
   public static pure getInstance : () ==> ExhibitionCentre
   	getInstance() == (
   		return centre;
   	);
   		
-  	--Getters
+  /*
+  Getters
+  */
+  --Returns a set with All Registered Visitors
   public pure getVisitors : () ==> set of (Visitor)
   	getVisitors() == (
   		return visitors;
   	);
-  		
+  
+  --Returns a set with All Registered Exhibitors		
   public pure getExhibitors : () ==> set of (Exhibitor)
   	getExhibitors() == (
   		return exhibitors;
   	);
-  		
+  
+  --Returns a set with All Registered Events closed or open		
   public pure getEvents : () ==> set of (Event)
   	getEvents() == (
   		return events;
   	);
-  		
+  
+  --Returns a set with All Rooms available for reservation	
   public pure getRooms : () ==> set of (Room)
   	getRooms() == (
   		return rooms;
   	);
-  		
+  
+  --Given an Id Returns a specific Event		
   public pure  getEvent : nat1 ==> Event
 		getEvent(id) == (
 			return iota x in set events & x.getId() = id;
 		)
 		pre exists1 x in set events & x.getId()=id;
-			
+	
+	--Given an Id Returns a specific room			
 	public pure  getRoom : nat1 ==> Room
 		getRoom(id) == (
 			return iota x in set rooms & x.getId() = id;
 		)
 		pre exists1 x in set rooms & x.getId()=id;
-		
+	
+	--Given an Id Returns a specific Visitor		
 	public pure  getVisitor : nat1 ==> Visitor
 		getVisitor(id) == (
 			return iota x in set visitors & x.getId() = id;
 		)
 		pre exists1 x in set visitors & x.getId()=id;
-		
+	
+	--Given an Id Returns a specific Exhibitor		
 	public pure  getExhibitor : nat1 ==> Exhibitor
 		getExhibitor(id) == (
 			return iota x in set exhibitors & x.getId() = id;
 		)
 		pre exists1 x in set exhibitors & x.getId()=id;
-  		
-  --Entity stuff
+
+  /*
+ 	 Entity Related Methods
+  */
+  
+  --Given a Name creates a new Visitor and adds it to the set of visitors
+  --Returns the newly created Visitor
   public registerVisitor : seq1 of char ==> Visitor
   	registerVisitor(v) == (
   		(dcl visitor: Visitor := new Visitor(v);
@@ -84,7 +108,9 @@ class ExhibitionCentre
 	  	);
   	)
   	post exists v1 in set visitors & v1.getName()=v;
-  		
+  
+  --Given a Name creates a new Exhibitor and adds it to the set of exhibitors
+  --Returns the newly created Exhibitor		
   public registerExhibitor : seq1 of char ==> Exhibitor
   	registerExhibitor(e) == (
   		(dcl exhibitor: Exhibitor := new Exhibitor(e);
@@ -93,7 +119,10 @@ class ExhibitionCentre
 	  	);
   	)
   	post exists e1 in set exhibitors & e1.getName()=e;
-  	
+  
+  --Given a visitor deletes it from the set of visitors
+  --removes all the future events that this visitor is enrolled on
+  --closed and already started events are untouched	
   public removeVisitor : Visitor ==> ()
 		removeVisitor(visitor) == (
 			visitors := visitors \ {visitor};
@@ -107,7 +136,10 @@ class ExhibitionCentre
 		post visitor not in set visitors 
 			and not exists event in set events & event.has_participant(visitor) 
 				and not event.isClosed() and not event.has_started();
-		
+	
+	--Given a exhibitor deletes it from the set of exhibitors
+  --removes all the future events that this exhibitor created
+  --closed and already started events are untouched	
 	public removeExhibitor: Exhibitor ==> ()
 		removeExhibitor(exhibitor) == (
 			exhibitors := exhibitors \ {exhibitor};
@@ -121,14 +153,21 @@ class ExhibitionCentre
 		post exhibitor not in set exhibitors
 				and not exists event in set events & event.getExhibitor()=exhibitor and  not event.isClosed() and not event.has_started();
 	
-	--event stuff
+	/*
+ 	 Event Related Methods
+  */
+  
+  --If a given event is not closed and has not started, removes it from the event set
 	public removeEvent: Event ==> ()
 		removeEvent (event) == (
 			events := events \ {event};
 		)
 		pre not event.isClosed() and event in set events
 			and not event.has_started();
-			
+	
+	--If it doens't overlap any of the already created events, 
+	--creates a new event and adds it to the event set
+	--Returns the newly created Event		
 	public createEvent: Date*Date*Room*Exhibitor*nat1*seq1 of char ==> Event
 		createEvent(initialDate,finalDate,room,exhibitor, price, name) == (
 			(dcl shcedule: Schedule := new Schedule(room,initialDate,finalDate), 
@@ -143,7 +182,8 @@ class ExhibitionCentre
 				not event.overlaps(initialDate, finalDate, room.getId()) or event.isClosed()
 		post exists1 event in set events & event.overlaps(initialDate, finalDate, room.getId()) 
 			and not event.isClosed();
-		
+	
+	--Closes all the concluded events, that is, all the events that the final date is smaller than the current date	
 	public closeCompletedEvents : () ==> ()
 		closeCompletedEvents() == (
 		(dcl currentDate : Date := new Date(CurrentTime`getYear(), CurrentTime`getMonth(), CurrentTime`getDay());
@@ -154,32 +194,37 @@ class ExhibitionCentre
 		)
 		post not exists event in set events & event.has_ended() 
 			and not event.isClosed();
-			
+	
+	--Given a password and an event forces the closure of it		
 	public forceCloseEvent : Event*seq1 of char ==> ()
 		forceCloseEvent(event,password) == (
 			event.forceCloseEvent(password);
 		)
 		pre event in set events;
-		
+	
+	--Adds a given Visitor to the set of the given event participants	
 	public addParticipantToEvent : Event * Visitor ==> ()
 		addParticipantToEvent(event,participant) == (
 			event.addParticipant(participant);
 		)
 		pre event in set events and participant in set visitors;
-		
+	
+	--Removes a given Visitor From the set of the given event participants		
 	public removeParticipantFromEvent : Event * Visitor ==> ()
 		removeParticipantFromEvent(event,participant) == (
 			event.removeParticipant(participant);
 		)
 		pre event in set events and participant in set visitors;
-		
+	
+	--Adds a given set of Visitor's to the set of the given event participants		
 	public addParticipantsToEvent : Event * set1 of Visitor ==> ()
 		addParticipantsToEvent(event,participants) == (
 			for all participant in set participants
 				do event.addParticipant(participant);
 		)
 		pre event in set events and (participants subset visitors);
-		
+	
+	--Removes a given set of Visitor's From the set of the given event participants			
 	public removeParticipantsFromEvent : Event * set1 of Visitor ==> ()
 		removeParticipantsFromEvent(event,participants) == (
 			for all participant in set participants
@@ -187,7 +232,8 @@ class ExhibitionCentre
 		)
 		pre event in set events and (participants subset visitors);
 		
-	--room stuff
+	--Creates a new Room for this exhibition Centre
+	--Returns the newly created room		
 	public addRoom : nat1 * nat1 ==> Room
 		addRoom(priceToSchedule, space) == (
 		(dcl room : Room := new Room(space,priceToSchedule);
@@ -196,7 +242,8 @@ class ExhibitionCentre
 		 	);
 		 );
 		
-	--precisa de comentários de pq de não retirar os eventos já reservados 
+	--Removes a given room from the exhibition Centre
+	--All scheduled events are left untouched, it just precludes the reservation of the room to future created events
 	public removeRoom : Room ==> ()
 		removeRoom (room) == (
 		 	rooms := rooms \ {room};
@@ -204,7 +251,11 @@ class ExhibitionCentre
 		pre room in set rooms
 		post room not in set rooms;
 		
-		--other gets
+	/*
+  	Reports with several metrics
+  */
+  
+  --Returns a set of Room that are available of reservation between the two given dates
 	public pure getAvailableRooms: Date*Date ==> set of Room
 		getAvailableRooms(iDate, fDate) == (
 			return {room | room in set rooms 
@@ -213,7 +264,8 @@ class ExhibitionCentre
 		)
 		pre fDate.compareDate(iDate) 
 			or ((fDate.compareDate(iDate) or fDate.compareDate(iDate)) = false);
-		
+	
+	--Given a room id checks if it is for reservation between the two given dates	
 	public pure overlapsEvents: Date*Date*nat1 ==> bool
 		overlapsEvents(iDate,fDate,idRoom) == (
 			return exists event in set events & event.overlaps(iDate, fDate, idRoom) and not event.isClosed()
@@ -221,29 +273,35 @@ class ExhibitionCentre
 		pre fDate.compareDate(iDate) 
 			or ((fDate.compareDate(iDate) or fDate.compareDate(iDate)) = false)
 			and exists1 x in set rooms & x.getId()=idRoom;
-		
+	
+	--Returns All the Events that a visitor is or was enrolled on	
 	public pure getEventsFromVisitor : Visitor ==> set of Event
 		getEventsFromVisitor(visitor) == (
 			return {event | event in set events & event.has_participant(visitor)};
 		)
 		pre visitor in set visitors;
 	
+	--Returns all the ongoing and future events
 	public pure getNotClosedEvents : () ==> set of Event
 		getNotClosedEvents() == (
 			return {event | event in set events & not event.isClosed()};
 		);
-			
+	
+	--Returns All the Events that a Exhibitor created/organized
 	public pure getEventsFromExhibitor : Exhibitor ==> set of Event
 		getEventsFromExhibitor(exhibitor) == (
 			return {event | event in set events & event.getExhibitor() = exhibitor};
 		)
 		pre exhibitor in set exhibitors;
-		
+	
+	--Given an Event returns a set with the price per participant, cost of the event, 
+	--the event sales value, the profit for the exhibitor and the number of participants  	
 	public pure getEventStatistics: Event ==> seq1 of int
 		getEventStatistics(event) == (
 			 return [event.getPricePerParticipant(), event.getCostOfEvent(), event.getSalesValueOfEvent(), event.profit(), card event.getParticipants()];
 		);
-		
+	
+	--Returns the total money that a visitor spent on the exhibiton Centre	
 	public pure totalMoneySpent : Visitor ==> nat
 		totalMoneySpent (visitor) == (
 			(dcl total: nat := 0;
@@ -254,7 +312,8 @@ class ExhibitionCentre
 			);
 		)
 		pre visitor in set visitors;
-		
+	
+	--Returns the total profit that a Exhibitor gained on the exhibiton Centre		
 	public pure totalProfit : Exhibitor ==> int
 		totalProfit (exhibitor) == (
 			(dcl total: int := 0;

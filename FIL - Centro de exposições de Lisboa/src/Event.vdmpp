@@ -1,8 +1,16 @@
+/*
+
+  Class that represents an Event;
+  An Event needs to have a reservation of a room between 2 days (schedule),
+  a name, and the exhibitor associated with it.
+  Each Eventcontrols the flow of participants of itself.
+	Also it has a unique set of Id's independent from other classes;
+*/
 class Event
 
 values
 	forceClosePassWord: seq1 of char = "password";
-
+	
 instance variables
 	public static nextId : nat1 := 1;
 	private id_event : nat1;
@@ -21,7 +29,7 @@ instance variables
 	private closed : bool;
 
 operations
-
+	--Constructor
 	public Event : Schedule * Exhibitor * nat1 * seq1 of char ==> Event
 		Event (sch, exhi, price, n) == (
 			schedule:=sch;
@@ -34,7 +42,8 @@ operations
 			name :=n;
 		)
 		post nextId>id_event;
-		
+	
+	--Closes the event if Today's date is bigger then it's final date of exhibition	
 	public closeEvent : Date ==> ()
 		closeEvent(currentDate) ==(
 			closed:=true;
@@ -45,22 +54,31 @@ operations
 			CurrentTime`getYear()=currentDate.getYear() and not closed
 		post closed;
 	
+	--Checks if today's date is bigger or equal then the event starting date
+	--returns true if it is, false otherwise
 	public pure has_started : () ==> bool
 		has_started() == (
 			return not schedule.getInitialDate().compareDate(CurrentTime`getYear(), CurrentTime`getMonth(), CurrentTime`getDay());
 		);
-		
+	
+	--Checks if today's date is bigger or equal then the event closing/final date	
+	--returns true if it is, false otherwise
 	public pure has_ended : () ==> bool
 		has_ended() == (
 			return not schedule.getFinalDate().compareDate(CurrentTime`getYear(), CurrentTime`getMonth(), CurrentTime`getDay());
 		);
-		
+	
+	--returns the unique id of this event	
 	public pure getId : () ==> nat1
 		getId() == (return id_event);
-		
+	
+	--returns the name of this event	
 	public pure getName : () ==> seq1 of char
 		getName() == (return name);
-		
+	
+	--Closes this event on special situations, the outcome is an event that won't happen but the exhibitor will still have to pay for it
+	--Needs a special password as an argument 	
+	--Participants are set to an empty set
 	public forceCloseEvent : (seq1 of char) ==> ()
 		forceCloseEvent(password) ==(
 			closed:=true;
@@ -69,40 +87,49 @@ operations
 		pre not closed and forceClosePassWord = password
 		post closed and card participants = 0;
 	
+	--returns price to participate in this event has a visitorS
 	public pure getPricePerParticipant : () ==> nat1
 		getPricePerParticipant() == (return pricePerParticipant);
 	
+	--checks if the event is closed (by date or forced)
 	public pure isClosed : () ==> bool
 		isClosed() == (return closed);
 	
+	--returns the exhibitor cost related to the reservation of the room for the starting and closing days
 	public pure getCostOfEvent : () ==> nat1
 		getCostOfEvent() ==(
 				return schedule.getPricePerDay()*schedule.getNumberOfDays();
 		);
 	
+	--returns the event sales value 
 	public pure getSalesValueOfEvent : () ==> nat
 		getSalesValueOfEvent() ==(
 			return (card participants)*pricePerParticipant;
 		);
 	
+	--returns the profit, might be negative if costs related to reservation are bigger then sales
 	public pure profit : () ==> int
 		profit () == (
 			return getSalesValueOfEvent()-getCostOfEvent();
 		);
-		
+	
+	--returns the exhibitor/organizer related to this event	
 	public pure getExhibitor : () ==> Exhibitor
 		getExhibitor() == (return exhibitor);
 	
+	--returns all the enrolled participants of this event
 	public pure getParticipants : () ==> set of Visitor
 		getParticipants() == (return participants);
-		
+	
+	--enrolls a given Visitor/Participant to the event	
 	public addParticipant : Visitor ==> ()
 		addParticipant(participant) == (
 			participants := participants union {participant};
 		)
 		pre participant not in set participants and not closed
 		post participant in set participants;
-		
+	
+	--Disenrolls a given Visitor/Participant from the event	, if the latter isn't already closed 	
 	public removeParticipant : Visitor ==> ()
 		removeParticipant(participant) == (
 			participants := participants \ {participant};
@@ -110,11 +137,13 @@ operations
 		pre participant  in set participants and not closed
 		post participant not in set participants;
 	
+	--Checks if a given visitor is already enrolled in this Event
 	public pure has_participant :  Visitor ==> bool
 		has_participant(participant) == (
 			return participant in set participants;
 		);
-
+	
+	--Checks if the reservation of this event is overlapped by two given dates and a room unique id
 	pure public overlaps : Date * Date * nat1 ==> bool
 		overlaps(iDate, fDate, idRoom) == (
 			return schedule.overlaps(iDate, fDate, idRoom);

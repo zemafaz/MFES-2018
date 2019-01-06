@@ -1,9 +1,17 @@
+/*
+
+  Class that represents a Room;
+	A room has maximum number of people that can be present and a price associated to reserving it for a day;
+	Also it has a unique set of Id's independent from other classes;
+
+*/
 class Room
 instance variables
-private static nextId : nat1 := 1;
-private id_room : nat1;
-private space: nat1;
-private pricePerDay: nat1;
+
+	private static nextId : nat1 := 1;
+	private id_room : nat1;
+	private space: nat1;
+	private pricePerDay: nat1;
 
 operations
 	-- Constructor

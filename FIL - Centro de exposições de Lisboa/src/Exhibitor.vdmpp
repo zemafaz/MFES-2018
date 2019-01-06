@@ -1,3 +1,10 @@
+/*
+
+  Class that represents a Exhibitor;
+  An Exhibitor is a subclass of an entity 
+  with only a constructor and a unique set of id's independent of other entity subclasses
+
+*/
 class Exhibitor is subclass of Entity
 
 instance variables

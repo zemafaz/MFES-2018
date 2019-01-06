@@ -27,7 +27,8 @@ instance variables
 	private event4 : Event := new Event(schedule3, exhibitor3, 20,"evento4");
 
 operations
-
+	
+	--Tests the closure and the force close of an event
 	private testCloseandForceCloseEvent: () ==> ()
 		testCloseandForceCloseEvent() == (
 			event1.closeEvent(new Date(CurrentTime`getYear(), CurrentTime`getMonth(), CurrentTime`getDay()));
@@ -39,6 +40,7 @@ operations
 			assertTrue(event3.isClosed());
 		);
 		
+	--Checks if Event Objects are being created correctly and returning the correct values 	
 	private testGets: () ==> ()
 		testGets() == (
 			assertEqual(20,event1.getPricePerParticipant());
@@ -90,7 +92,7 @@ operations
 			assertEqual("evento4", event4.getName());
 		);
 	
-	
+	--tests if 2 dates overlaps the event
 	private testOverlaps: () ==> ()
 		testOverlaps() == (
 			assertTrue(event1.overlaps(date3,date4,room1.getId()));
@@ -107,6 +109,7 @@ operations
 			assertTrue(not event3.overlaps(date4,date4,room3.getId()));
 	);
 	
+	--tests the addition and removal of participants
 	private testParticipants: () ==> ()
 		testParticipants () == (
 			event4.addParticipant(visitor1);
@@ -145,13 +148,15 @@ operations
 		);
 		
 		--test Pre and Post conditions
+		-- A name can't have more than 50 characters	
 	private testInvName: () ==> ()
 		testInvName () == (
 			(dcl NameTooBig : Event :=new Event(schedule1, exhibitor1, 20,"O meu nome tem mais de cinquenta caracteres por isso dá erro");
 				assertEqual("O meu nome tem mais de cinquenta caracteres por isso dá erro",NameTooBig.getName());
 			);
 		);
-		
+	
+	-- An event can't have more participants than those that the room allows
 	private testLimitOfParticipants: () ==> ()
 		testLimitOfParticipants () == (
 			event4.addParticipant(visitor1);
@@ -161,7 +166,8 @@ operations
 			event4.addParticipant(visitor7);
 			assertEqual(7, card event4.getParticipants());
 		);
-		
+	
+	--The Final date of the Event needs to be lower than the current date for an event to be closed	
 	private testCloseEventPre: () ==> ()
 		testCloseEventPre () == (
 			(dcl currentDate : Date := new Date(CurrentTime`getYear(),CurrentTime`getMonth(),CurrentTime`getDay()),
@@ -171,18 +177,21 @@ operations
 				assertTrue(event.isClosed());
 			);
 		);
-		
+	
+	--Wrong Password	
 	private testForceCloseEventWrongPassword: () ==> ()
 		testForceCloseEventWrongPassword () == (
 			event4.forceCloseEvent("testpassword");
 		);
-	
+		
+	--IT's not possible to add a partipant to a closed event
 	private testaddParticipantToClosedEvent: () ==> ()
 		testaddParticipantToClosedEvent () == (
 			event4.closeEvent(new Date(CurrentTime`getYear(), CurrentTime`getMonth(), CurrentTime`getDay()));
 			event4.addParticipant(visitor1);
 		);
 		
+	--IT's not possible to remove a partipant from a closed event
 	private testRemoveParticipantFromClosedEvent: () ==> ()
 		testRemoveParticipantFromClosedEvent () == (
 			event4.removeParticipant(visitor1);
