@@ -4,7 +4,7 @@ import org.overture.codegen.runtime.*;
 
 @SuppressWarnings("all")
 public class TestMain {
-  public static void main() {
+  public static void main(String args[]) {
 
     IO.println("Inicializar testes...");
     new TestDate().test();
