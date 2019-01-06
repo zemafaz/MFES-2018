@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Set&lt;Exhibitor&gt;" version="3">
+  <DEPS>
+    <ID name="Set&lt;Exhibitor&gt;" mc="Class" uid="ef7c87f6-83f0-4a9c-89a0-8d70a79bfb0f"/>
+    <EXTID name="Exhibitor" mc="Class" uid="bd1b9cc9-a487-4a15-8056-b026cdade56c"/>
+    <EXTID name="Set&lt;T&gt;" mc="Class" uid="1c6ac6b9-dfb6-48eb-b92d-9f081e4b8338"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Set&lt;Exhibitor&gt;" mc="Class" uid="ef7c87f6-83f0-4a9c-89a0-8d70a79bfb0f"/>
+    <PID name="Binding classes" mc="Package" uid="7ba6b4b7-bc36-4cd2-8a5a-b3eede3b5d27"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Set<Exhibitor>]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="TemplateInstanciation">
+        <OBJECT>
+          <ID name="" mc="TemplateBinding" uid="6275a2af-336d-4614-aae3-86379778c189"/>
+          <PID name="Set&lt;Exhibitor&gt;" mc="Class" uid="ef7c87f6-83f0-4a9c-89a0-8d70a79bfb0f"/>
+          <ATTRIBUTES>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="ParameterSubstitution">
+              <OBJECT>
+                <ID name="" mc="TemplateParameterSubstitution" uid="495552e2-a3ac-4880-9855-130c80eb6e14"/>
+                <PID name="Set&lt;Exhibitor&gt;" mc="Class" uid="ef7c87f6-83f0-4a9c-89a0-8d70a79bfb0f"/>
+                <ATTRIBUTES>
+                  <ATT name="Value"></ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Actual">
+                    <ID name="Exhibitor" mc="Class" uid="bd1b9cc9-a487-4a15-8056-b026cdade56c"/>
+                  </LINK>
+                  <LINK relation="FormalParameter">
+                    <REFOBJ>
+                      <ID name="" mc="TemplateParameter" uid="d80059a1-634a-47b1-a377-e136a54f8a27"/>
+                      <PID name="Set&lt;T&gt;" mc="Class" uid="1c6ac6b9-dfb6-48eb-b92d-9f081e4b8338"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

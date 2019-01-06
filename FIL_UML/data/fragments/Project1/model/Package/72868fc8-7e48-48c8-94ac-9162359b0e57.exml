@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Basic VDM Types" version="3">
+  <DEPS>
+    <ID name="Basic VDM Types" mc="Package" uid="72868fc8-7e48-48c8-94ac-9162359b0e57"/>
+    <COMPID name="&lt;append&gt;" mc="DataType" uid="409acaa7-e596-4821-8830-4a0003f3a7ed"/>
+    <COMPID name="&lt;start&gt;" mc="DataType" uid="2eeb64b0-0a5a-4856-981e-3863ba9ea16a"/>
+    <COMPID name="Any" mc="DataType" uid="d2aa02db-d9e9-4d4c-a33f-2fdacf23ea16"/>
+    <COMPID name="Void" mc="DataType" uid="e24a207b-c2a9-469a-ab54-c973da01f3ce"/>
+    <COMPID name="bool" mc="DataType" uid="9758f809-69a8-4657-ab48-114465f87eca"/>
+    <COMPID name="int" mc="DataType" uid="521a9bf7-c1f1-4e3a-98f3-2c7053aa2a38"/>
+    <COMPID name="nat" mc="DataType" uid="25da9466-d38f-4d99-8bf0-a1fe91a02f7d"/>
+    <COMPID name="nat1" mc="DataType" uid="78f18aa9-df81-4ca9-8c6d-fe175c38c267"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Basic VDM Types" mc="Package" uid="72868fc8-7e48-48c8-94ac-9162359b0e57"/>
+    <PID name="project1" mc="Package" uid="88340347-f80f-47cb-9b8e-ea9bf0b1c60e"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Basic VDM Types]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="&lt;append&gt;" mc="DataType" uid="409acaa7-e596-4821-8830-4a0003f3a7ed"/>
+        <COMPID name="&lt;start&gt;" mc="DataType" uid="2eeb64b0-0a5a-4856-981e-3863ba9ea16a"/>
+        <COMPID name="nat1" mc="DataType" uid="78f18aa9-df81-4ca9-8c6d-fe175c38c267"/>
+        <COMPID name="bool" mc="DataType" uid="9758f809-69a8-4657-ab48-114465f87eca"/>
+        <COMPID name="Any" mc="DataType" uid="d2aa02db-d9e9-4d4c-a33f-2fdacf23ea16"/>
+        <COMPID name="Void" mc="DataType" uid="e24a207b-c2a9-469a-ab54-c973da01f3ce"/>
+        <COMPID name="nat" mc="DataType" uid="25da9466-d38f-4d99-8bf0-a1fe91a02f7d"/>
+        <COMPID name="int" mc="DataType" uid="521a9bf7-c1f1-4e3a-98f3-2c7053aa2a38"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

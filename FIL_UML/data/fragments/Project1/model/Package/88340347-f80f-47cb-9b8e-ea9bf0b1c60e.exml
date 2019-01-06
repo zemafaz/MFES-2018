@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="project1" version="3">
+  <DEPS>
+    <ID name="project1" mc="Package" uid="88340347-f80f-47cb-9b8e-ea9bf0b1c60e"/>
+    <COMPID name="Basic VDM Types" mc="Package" uid="72868fc8-7e48-48c8-94ac-9162359b0e57"/>
+    <COMPID name="Binding classes" mc="Package" uid="7ba6b4b7-bc36-4cd2-8a5a-b3eede3b5d27"/>
+    <COMPID name="Composite VDM Types" mc="Package" uid="0f980610-3b95-42b3-8b51-19f9f53f228f"/>
+    <COMPID name="CurrentTime" mc="Class" uid="ead020b5-6e55-475d-ac4b-eb4b9a9c7db8"/>
+    <COMPID name="Date" mc="Class" uid="44d7f025-a5ce-4539-a9d1-1f2c49af74d4"/>
+    <COMPID name="Entity" mc="Class" uid="70d5eb26-6b0e-43a5-aa51-5bf84241d2a2"/>
+    <COMPID name="Event" mc="Class" uid="7641bce4-c287-40ba-b56c-837a0a269cd6"/>
+    <COMPID name="ExhibitionCentre" mc="Class" uid="91317076-7b69-494b-9a3d-782769848668"/>
+    <COMPID name="Exhibitor" mc="Class" uid="bd1b9cc9-a487-4a15-8056-b026cdade56c"/>
+    <COMPID name="IO" mc="Class" uid="adbb29fd-c2d2-4cb3-a723-b77ef816928b"/>
+    <COMPID name="MyTestCase" mc="Class" uid="ee0a9bde-fa6b-4e10-a655-a0e37e2d90d2"/>
+    <COMPID name="Room" mc="Class" uid="7d921032-56f0-41a8-9138-b8c932984d18"/>
+    <COMPID name="Schedule" mc="Class" uid="2099d4c3-c1e7-46f9-a111-2e197677feb1"/>
+    <COMPID name="TestDate" mc="Class" uid="d036102e-1d89-4414-9612-0e1991dbdd7a"/>
+    <COMPID name="TestEntity" mc="Class" uid="908464e3-9b06-4371-a2e7-cf926b71e4ac"/>
+    <COMPID name="TestEvent" mc="Class" uid="9b8d6b09-8dcc-4a4b-86b5-27b4f67a1eee"/>
+    <COMPID name="TestExhibitionCentre" mc="Class" uid="b5bf0ac5-dd15-4fba-8947-a53c6a6cf62a"/>
+    <COMPID name="TestMain" mc="Class" uid="3a7b9e70-e921-4fa8-a16b-ca001f527ca6"/>
+    <COMPID name="TestRoom" mc="Class" uid="da30d37a-3df9-4ae6-8a70-215f5df8283e"/>
+    <COMPID name="TestSchedule" mc="Class" uid="9ae5dac1-2c8f-4dff-b9a4-b01b0890ce0f"/>
+    <COMPID name="Visitor" mc="Class" uid="c33ade2d-90f0-4a1f-bc12-c1e41e9f1345"/>
+    <COMPID name="overview diagram" mc="ClassDiagram" uid="390c7fd3-a39a-4b0a-9813-9e291204ed8e"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="project1" mc="Package" uid="88340347-f80f-47cb-9b8e-ea9bf0b1c60e"/>
+    <PID name="Project1" mc="Project" uid="5e187dfa-7e51-4f1c-ad5c-e009690fc104"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[project1]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Basic VDM Types" mc="Package" uid="72868fc8-7e48-48c8-94ac-9162359b0e57"/>
+        <COMPID name="CurrentTime" mc="Class" uid="ead020b5-6e55-475d-ac4b-eb4b9a9c7db8"/>
+        <COMPID name="IO" mc="Class" uid="adbb29fd-c2d2-4cb3-a723-b77ef816928b"/>
+        <COMPID name="Date" mc="Class" uid="44d7f025-a5ce-4539-a9d1-1f2c49af74d4"/>
+        <COMPID name="Entity" mc="Class" uid="70d5eb26-6b0e-43a5-aa51-5bf84241d2a2"/>
+        <COMPID name="Event" mc="Class" uid="7641bce4-c287-40ba-b56c-837a0a269cd6"/>
+        <COMPID name="ExhibitionCentre" mc="Class" uid="91317076-7b69-494b-9a3d-782769848668"/>
+        <COMPID name="Exhibitor" mc="Class" uid="bd1b9cc9-a487-4a15-8056-b026cdade56c"/>
+        <COMPID name="Room" mc="Class" uid="7d921032-56f0-41a8-9138-b8c932984d18"/>
+        <COMPID name="Schedule" mc="Class" uid="2099d4c3-c1e7-46f9-a111-2e197677feb1"/>
+        <COMPID name="Visitor" mc="Class" uid="c33ade2d-90f0-4a1f-bc12-c1e41e9f1345"/>
+        <COMPID name="MyTestCase" mc="Class" uid="ee0a9bde-fa6b-4e10-a655-a0e37e2d90d2"/>
+        <COMPID name="TestDate" mc="Class" uid="d036102e-1d89-4414-9612-0e1991dbdd7a"/>
+        <COMPID name="TestEntity" mc="Class" uid="908464e3-9b06-4371-a2e7-cf926b71e4ac"/>
+        <COMPID name="TestEvent" mc="Class" uid="9b8d6b09-8dcc-4a4b-86b5-27b4f67a1eee"/>
+        <COMPID name="TestExhibitionCentre" mc="Class" uid="b5bf0ac5-dd15-4fba-8947-a53c6a6cf62a"/>
+        <COMPID name="TestMain" mc="Class" uid="3a7b9e70-e921-4fa8-a16b-ca001f527ca6"/>
+        <COMPID name="TestRoom" mc="Class" uid="da30d37a-3df9-4ae6-8a70-215f5df8283e"/>
+        <COMPID name="TestSchedule" mc="Class" uid="9ae5dac1-2c8f-4dff-b9a4-b01b0890ce0f"/>
+        <COMPID name="Composite VDM Types" mc="Package" uid="0f980610-3b95-42b3-8b51-19f9f53f228f"/>
+        <COMPID name="Binding classes" mc="Package" uid="7ba6b4b7-bc36-4cd2-8a5a-b3eede3b5d27"/>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="overview diagram" mc="ClassDiagram" uid="390c7fd3-a39a-4b0a-9813-9e291204ed8e"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

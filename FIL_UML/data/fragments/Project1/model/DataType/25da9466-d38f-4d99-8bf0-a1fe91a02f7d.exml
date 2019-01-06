@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="nat" version="3">
+  <DEPS>
+    <ID name="nat" mc="DataType" uid="25da9466-d38f-4d99-8bf0-a1fe91a02f7d"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="nat" mc="DataType" uid="25da9466-d38f-4d99-8bf0-a1fe91a02f7d"/>
+    <PID name="Basic VDM Types" mc="Package" uid="72868fc8-7e48-48c8-94ac-9162359b0e57"/>
+    <ATTRIBUTES>
+      <ATT name="IsElementary">true</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[nat]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>

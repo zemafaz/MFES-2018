@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Optional&lt;IO::filedirective&gt;" version="3">
+  <DEPS>
+    <ID name="Optional&lt;IO::filedirective&gt;" mc="Class" uid="b4b27752-8ef6-4a28-9c1d-2c7391d13588"/>
+    <EXTID name="Optional&lt;T&gt;" mc="Class" uid="66d3ac4f-6a59-4ad5-9417-baecd71e0910"/>
+    <EXTID name="filedirective" mc="Class" uid="c92e2c9c-0986-4ae4-8915-f15e0f9f7545"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Optional&lt;IO::filedirective&gt;" mc="Class" uid="b4b27752-8ef6-4a28-9c1d-2c7391d13588"/>
+    <PID name="Binding classes" mc="Package" uid="7ba6b4b7-bc36-4cd2-8a5a-b3eede3b5d27"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Optional<IO::filedirective>]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="TemplateInstanciation">
+        <OBJECT>
+          <ID name="" mc="TemplateBinding" uid="1909dbd3-b6af-4016-a2cb-5e8864efa28d"/>
+          <PID name="Optional&lt;IO::filedirective&gt;" mc="Class" uid="b4b27752-8ef6-4a28-9c1d-2c7391d13588"/>
+          <ATTRIBUTES>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="ParameterSubstitution">
+              <OBJECT>
+                <ID name="" mc="TemplateParameterSubstitution" uid="72b01fa6-78f1-438e-8126-5030b064c2d0"/>
+                <PID name="Optional&lt;IO::filedirective&gt;" mc="Class" uid="b4b27752-8ef6-4a28-9c1d-2c7391d13588"/>
+                <ATTRIBUTES>
+                  <ATT name="Value"></ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Actual">
+                    <ID name="filedirective" mc="Class" uid="c92e2c9c-0986-4ae4-8915-f15e0f9f7545"/>
+                  </LINK>
+                  <LINK relation="FormalParameter">
+                    <REFOBJ>
+                      <ID name="" mc="TemplateParameter" uid="5703840b-7294-42e7-a27b-32fffaabbe68"/>
+                      <PID name="Optional&lt;T&gt;" mc="Class" uid="66d3ac4f-6a59-4ad5-9417-baecd71e0910"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

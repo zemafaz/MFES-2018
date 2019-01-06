@@ -342,6 +342,6 @@ class ExhibitionCentre
 		pre exhibitor in set exhibitors;
 		
 	thread
-  	centre.closeCompletedEvents();
+  	closeCompletedEvents();
 		 	
 end ExhibitionCentre

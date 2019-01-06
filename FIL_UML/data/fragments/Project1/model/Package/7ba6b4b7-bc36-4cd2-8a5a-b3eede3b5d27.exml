@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Binding classes" version="3">
+  <DEPS>
+    <ID name="Binding classes" mc="Package" uid="7ba6b4b7-bc36-4cd2-8a5a-b3eede3b5d27"/>
+    <COMPID name="Optional&lt;IO::filedirective&gt;" mc="Class" uid="b4b27752-8ef6-4a28-9c1d-2c7391d13588"/>
+    <COMPID name="Optional&lt;p&gt;" mc="Class" uid="b3fceedb-4622-4964-b31d-e366b9d419b4"/>
+    <COMPID name="Product&lt;bool,Optional&lt;p&gt;&gt;" mc="Class" uid="6ef3b871-4632-489b-b546-7979c48e5319"/>
+    <COMPID name="Seq&lt;Any&gt;" mc="Class" uid="738a8e61-0bad-4a1f-a8d4-6a8cddd7194e"/>
+    <COMPID name="Seq&lt;char&gt;" mc="Class" uid="92f8d217-7701-4845-894b-0ec4b44fed3a"/>
+    <COMPID name="Seq&lt;int&gt;" mc="Class" uid="6d54ca6b-ae1b-4c79-8061-fd04c3780bd7"/>
+    <COMPID name="Set&lt;Event&gt;" mc="Class" uid="688c9c45-dcf5-46d2-86c2-43d45a6c125f"/>
+    <COMPID name="Set&lt;Exhibitor&gt;" mc="Class" uid="ef7c87f6-83f0-4a9c-89a0-8d70a79bfb0f"/>
+    <COMPID name="Set&lt;Room&gt;" mc="Class" uid="268b8103-8bff-401d-97aa-e6814bfdd3ce"/>
+    <COMPID name="Set&lt;Visitor&gt;" mc="Class" uid="3d1bb426-5cf0-40a8-8118-4875b93f70d3"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Binding classes" mc="Package" uid="7ba6b4b7-bc36-4cd2-8a5a-b3eede3b5d27"/>
+    <PID name="project1" mc="Package" uid="88340347-f80f-47cb-9b8e-ea9bf0b1c60e"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Binding classes]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Seq&lt;char&gt;" mc="Class" uid="92f8d217-7701-4845-894b-0ec4b44fed3a"/>
+        <COMPID name="Product&lt;bool,Optional&lt;p&gt;&gt;" mc="Class" uid="6ef3b871-4632-489b-b546-7979c48e5319"/>
+        <COMPID name="Optional&lt;p&gt;" mc="Class" uid="b3fceedb-4622-4964-b31d-e366b9d419b4"/>
+        <COMPID name="Optional&lt;IO::filedirective&gt;" mc="Class" uid="b4b27752-8ef6-4a28-9c1d-2c7391d13588"/>
+        <COMPID name="Seq&lt;Any&gt;" mc="Class" uid="738a8e61-0bad-4a1f-a8d4-6a8cddd7194e"/>
+        <COMPID name="Set&lt;Visitor&gt;" mc="Class" uid="3d1bb426-5cf0-40a8-8118-4875b93f70d3"/>
+        <COMPID name="Set&lt;Event&gt;" mc="Class" uid="688c9c45-dcf5-46d2-86c2-43d45a6c125f"/>
+        <COMPID name="Set&lt;Room&gt;" mc="Class" uid="268b8103-8bff-401d-97aa-e6814bfdd3ce"/>
+        <COMPID name="Set&lt;Exhibitor&gt;" mc="Class" uid="ef7c87f6-83f0-4a9c-89a0-8d70a79bfb0f"/>
+        <COMPID name="Seq&lt;int&gt;" mc="Class" uid="6d54ca6b-ae1b-4c79-8061-fd04c3780bd7"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Set&lt;Event&gt;" version="3">
+  <DEPS>
+    <ID name="Set&lt;Event&gt;" mc="Class" uid="688c9c45-dcf5-46d2-86c2-43d45a6c125f"/>
+    <EXTID name="Event" mc="Class" uid="7641bce4-c287-40ba-b56c-837a0a269cd6"/>
+    <EXTID name="Set&lt;T&gt;" mc="Class" uid="1c6ac6b9-dfb6-48eb-b92d-9f081e4b8338"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Set&lt;Event&gt;" mc="Class" uid="688c9c45-dcf5-46d2-86c2-43d45a6c125f"/>
+    <PID name="Binding classes" mc="Package" uid="7ba6b4b7-bc36-4cd2-8a5a-b3eede3b5d27"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Set<Event>]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="TemplateInstanciation">
+        <OBJECT>
+          <ID name="" mc="TemplateBinding" uid="34a9179c-58b9-4016-ae01-85254b8e72ec"/>
+          <PID name="Set&lt;Event&gt;" mc="Class" uid="688c9c45-dcf5-46d2-86c2-43d45a6c125f"/>
+          <ATTRIBUTES>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="ParameterSubstitution">
+              <OBJECT>
+                <ID name="" mc="TemplateParameterSubstitution" uid="488854b4-8ebe-4885-8841-536f68c882a6"/>
+                <PID name="Set&lt;Event&gt;" mc="Class" uid="688c9c45-dcf5-46d2-86c2-43d45a6c125f"/>
+                <ATTRIBUTES>
+                  <ATT name="Value"></ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Actual">
+                    <ID name="Event" mc="Class" uid="7641bce4-c287-40ba-b56c-837a0a269cd6"/>
+                  </LINK>
+                  <LINK relation="FormalParameter">
+                    <REFOBJ>
+                      <ID name="" mc="TemplateParameter" uid="d80059a1-634a-47b1-a377-e136a54f8a27"/>
+                      <PID name="Set&lt;T&gt;" mc="Class" uid="1c6ac6b9-dfb6-48eb-b92d-9f081e4b8338"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
