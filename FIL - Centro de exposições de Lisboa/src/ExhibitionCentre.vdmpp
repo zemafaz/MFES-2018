@@ -22,6 +22,7 @@ class ExhibitionCentre
   private exhibitors: set of (Exhibitor);
   inv not exists e2, e3 in set exhibitors & e2 <> e3 and e2.getId() = e3.getId();
   
+  
  operations
   -- PRIVATE Constructor
   private ExhibitionCentre : () ==> ExhibitionCentre
@@ -324,5 +325,8 @@ class ExhibitionCentre
 			);
 		)
 		pre exhibitor in set exhibitors;
+		
+	thread
+  	centre.closeCompletedEvents();
 		 	
 end ExhibitionCentre

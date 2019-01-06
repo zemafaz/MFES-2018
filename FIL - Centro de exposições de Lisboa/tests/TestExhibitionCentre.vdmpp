@@ -188,7 +188,10 @@ operations
 			assertTrue(centre.overlapsEvents(date5,date5,room2.getId()));
 			assertTrue(centre.overlapsEvents(date5,date5,room3.getId()));
 			
-			centre.closeCompletedEvents();
+			start(ExhibitionCentre`getInstance());
+			while centre.getNotClosedEvents()<>{event4,event5,event6}
+				do IO`println("\t\tTesting thread");
+				
 			assertEqual({event4,event5,event6},centre.getNotClosedEvents());
 			centre.forceCloseEvent(event5,"password");
 			assertEqual({event4,event6},centre.getNotClosedEvents());
