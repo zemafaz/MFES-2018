@@ -77,36 +77,21 @@ class ExhibitionCentre
 	--Given an Id Returns a specific room			
 	public pure  getRoom : nat1 ==> Room
 		getRoom(id) == (
-			(dcl room: Room;
-				for all x in set rooms
-					do if x.getId() = id
-						then room:= x;
-				return room;
-			);
+			return iota x in set rooms & x.getId()=id;
 		)
 		pre exists1 x in set rooms & x.getId()=id;
 	
 	--Given an Id Returns a specific Visitor		
 	public pure  getVisitor : nat1 ==> Visitor
 		getVisitor(id) == (
-			(dcl visitor: Visitor;
-				for all x in set visitors
-					do if x.getId() = id
-						then visitor:= x;
-				return visitor;
-			);
+			return iota x in set visitors & x.getId()=id;
 		)
 		pre exists1 x in set visitors & x.getId()=id;
 	
 	--Given an Id Returns a specific Exhibitor		
 	public pure  getExhibitor : nat1 ==> Exhibitor
 		getExhibitor(id) == (
-			(dcl exhibitor: Exhibitor;
-				for all x in set exhibitors
-					do if x.getId() = id
-						then exhibitor:= x;
-				return exhibitor;
-			);
+			return iota x in set exhibitors & x.getId()=id;
 		)
 		pre exists1 x in set exhibitors & x.getId()=id;
 
