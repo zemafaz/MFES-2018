@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Rtorres/Documents/GitHub/MFES-2018/FIL - Centro de exposições de Lisboa/generated/java/lib/codegen-runtime.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Rtorres/Documents/GitHub/MFES-2018/FIL - Centro de exposições de Lisboa/generated/java/lib/codegen-runtime-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Rtorres/Documents/GitHub/MFES-2018/Java -FIL- Centro de Exposições/lib/codegen-runtime.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Rtorres/Documents/GitHub/MFES-2018/Java -FIL- Centro de Exposições/lib/codegen-runtime-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
